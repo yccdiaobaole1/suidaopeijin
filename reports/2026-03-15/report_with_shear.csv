@@ -1,0 +1,8 @@
+segment_id,segment_type,representative_segment,scheme,count,main_spacing_mm,stirrup_spec,dist_spec,cost_cny_per_m,max_crack_mm,spacing_objective_mm,joint_pareto_count,stirrup_pareto_count,joint_selected_rank,joint_selected_score,joint_selected_reason,joint_top3,stirrup_selected_rank,stirrup_required_asv_over_s,stirrup_selected_reason,stirrup_top3,governance_code_fingerprint,governance_config_sha256,governance_source_summary,governance_blocked_count,governance_approved_count
+A1,A,A3,,,,,,,,,,,,,,,,,,,,,,,
+A2,A,A3,,,,,,,,,,,,,,,,,,,,,,,
+A3,A,A3,,,,,,,,,,,,,,,,,,,,,,,
+B1,B,B2,,,,,,,,,,,,,,,,,,,,,,,
+B2,B,B2,,,,,,,,,,,,,,,,,,,,,,,
+C1,C,C2,,,,,,,,,,,,,,,,,,,,,,,
+C2,C,C2,,,,,,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,401 @@
+/clear
+/prep7
+NUMSTR,KP,1
+NUMSTR,LINE,1
+NUMSTR,AREA,1
+NUMSTR,VOLU,1
+CSYS,0
+
+! ==========================================================
+! 第一步：精准几何建模 (完全保留B块两段圆弧，不切分面)
+! ==========================================================
+K, 1, 0.00000, -4.52400, 0         
+K, 2, 4.89643, -3.85960, 0         
+K, 3, 6.64837, -2.19071, 0         
+K, 4, 7.00000, 0.00000, 0          
+K, 5, 3.50000, 6.06218, 0          
+K, 6, -3.50000, 6.06218, 0         
+K, 7, -7.00000, 0.00000, 0         
+K, 8, -6.64837, -2.19071, 0        
+K, 9, -4.89643, -3.85960, 0        
+
+K, 11, 0.00000, -4.17400, 0
+K, 12, 4.80317, -3.52260, 0
+K, 13, 6.31595, -2.08117, 0
+K, 14, 6.65000, 0.00000, 0
+K, 15, 3.32500, 5.75907, 0
+K, 16, -3.32500, 5.75907, 0
+K, 17, -6.65000, 0.00000, 0
+K, 18, -6.31595, -2.08117, 0
+K, 19, -4.80317, -3.52260, 0
+
+K, 21, 0.00000, -4.87400, 0
+K, 22, 4.98970, -4.19740, 0
+K, 23, 6.98079, -2.30025, 0
+K, 24, 7.35000, 0.00000, 0
+K, 25, 3.67500, 6.36529, 0
+K, 26, -3.67500, 6.36529, 0
+K, 27, -7.35000, 0.00000, 0
+K, 28, -6.98079, -2.30025, 0
+K, 29, -4.98970, -4.19740, 0
+
+K, 41, 2.47000, -4.35700, 0        
+K, 42, 5.98100, -3.24400, 0        
+K, 43, 6.91100, -1.10900, 0        
+K, 44, 6.06218, 3.50000, 0         
+K, 45, 0.00000, 7.00000, 0         
+K, 46, -6.06218, 3.50000, 0        
+K, 47, -6.91100, -1.10900, 0       
+K, 48, -5.98100, -3.24400, 0       
+K, 49, -2.47000, -4.35700, 0       
+
+K, 51, 2.34700, -4.01100, 0
+K, 52, 5.74000, -2.99100, 0
+K, 53, 6.56600, -1.05400, 0
+K, 54, 5.75907, 3.32500, 0
+K, 55, 0.00000, 6.65000, 0
+K, 56, -5.75907, 3.32500, 0
+K, 57, -6.56600, -1.05400, 0
+K, 58, -5.74000, -2.99100, 0
+K, 59, -2.34700, -4.01100, 0
+
+K, 31, 2.59400, -4.70400, 0
+K, 32, 6.22300, -3.49800, 0
+K, 33, 7.25700, -1.16500, 0
+K, 34, 6.36529, 3.67500, 0
+K, 35, 0.00000, 7.35000, 0
+K, 36, -6.36529, 3.67500, 0
+K, 37, -7.25700, -1.16500, 0
+K, 38, -6.22300, -3.49800, 0
+K, 39, -2.59400, -4.70400, 0
+
+LARC, 21, 22, 31   
+LARC, 22, 23, 32   
+LARC, 23, 24, 33   
+LARC, 24, 25, 34   
+LARC, 25, 26, 35   
+LARC, 26, 27, 36   
+LARC, 27, 28, 37   
+LARC, 28, 29, 38   
+LARC, 29, 21, 39   
+
+LARC, 1, 2, 41     
+LARC, 2, 3, 42     
+LARC, 3, 4, 43     
+LARC, 4, 5, 44     
+LARC, 5, 6, 45     
+LARC, 6, 7, 46     
+LARC, 7, 8, 47     
+LARC, 8, 9, 48     
+LARC, 9, 1, 49     
+
+LARC, 11, 12, 51   
+LARC, 12, 13, 52   
+LARC, 13, 14, 53   
+LARC, 14, 15, 54   
+LARC, 15, 16, 55   
+LARC, 16, 17, 56   
+LARC, 17, 18, 57   
+LARC, 18, 19, 58   
+LARC, 19, 11, 59   
+
+L, 1, 21  
+L, 2, 22  
+L, 4, 24  
+L, 5, 25  
+L, 6, 26  
+L, 7, 27  
+L, 9, 29  
+
+L, 11, 1  
+L, 12, 2  
+L, 14, 4  
+L, 15, 5  
+L, 16, 6  
+L, 17, 7  
+L, 19, 9  
+
+! 生成双层2D实体面
+AL, 28, 1, 29, 10                 
+AL, 29, 2, 3, 30, 12, 11          
+AL, 30, 4, 31, 13                 
+AL, 31, 5, 32, 14                 
+AL, 32, 6, 33, 15                 
+AL, 33, 7, 8, 34, 17, 16          
+AL, 34, 9, 28, 18                 
+
+AL, 35, 10, 36, 19                
+AL, 36, 11, 12, 37, 21, 20        
+AL, 37, 13, 38, 22                
+AL, 38, 14, 39, 23                
+AL, 39, 15, 40, 24                
+AL, 40, 16, 17, 41, 26, 25        
+AL, 41, 18, 35, 27                
+
+! ==========================================================
+! 第二步：材料参数 (★修复自重双倍导致的内力偏大BUG★)
+! ==========================================================
+TH=0.7          
+BL=1            
+FK=1.0          
+L1=0.2          
+E_C=34.5e9      
+U_C=0.2         
+DENS_C=2420     
+KS=143.8e6      
+
+ET,1,BEAM188,,,3
+SECTYPE,1,BEAM,RECT
+SECDATA,0.001,FK
+ET,2,PLANE182   
+KEYOPT,2,1,0
+KEYOPT,2,3,2
+KEYOPT,2,6,0
+ET,3,BEAM188,,,3
+SECTYPE,3,BEAM,RECT
+SECDATA,TH,FK
+ET,4,LINK10,,,1
+
+! 【关键修复】将实体和梁的密度均设为一半，消除 200% 自重！
+MP,EX,1,E_C/2		
+MP,PRXY,1,U_C
+MP,DENS,1,DENS_C/2      
+
+MP,EX,2,E_C/2	
+MP,PRXY,2,U_C
+MP,DENS,2,DENS_C/2      
+
+MP,EX,3,KS
+MP,PRXY,3,0.3
+R,1,L1*1		
+
+! ==========================================================
+! 第三步：虚拟梁与非均匀荷载施加
+! ==========================================================
+LSEL,S,LINE,,1,9
+LATT,1,,1,,,,1
+LESIZE,ALL,0.2,,,,,,,1
+LMESH,ALL
+NUMCMP,NODE,EORD
+NUMCMP,ELEM,EORD
+ALLSEL
+
+*SET,_Q1,174400*BL     
+*SET,_Q2,174400*BL     
+*SET,_E1,29900*BL      
+*SET,_E2,68100*BL      
+*SET,_E3,29900*BL      
+*SET,_E4,68100*BL      
+
+*GET,_E_MAX,ELEM,,NUM,MAX   
+*GET,_E_MIN,ELEM,,NUM,MIN   
+*GET,_E_COUNT,ELEM,,COUNT   
+*GET,_N_MAX,NODE,,NUM,MAX   
+*GET,_N_MIN,NODE,,NUM,MIN   
+*GET,_N_COUNT,NODE,,COUNT   
+*GET,_LOC_X_MAX,NODE,,MXLOC,X   
+*GET,_LOC_X_MIN,NODE,,MNLOC,X   
+*GET,_LOC_Y_MAX,NODE,,MXLOC,Y   
+*GET,_LOC_Y_MIN,NODE,,MNLOC,Y   
+*SET,_WIDTH,_LOC_X_MAX-_LOC_X_MIN   
+*SET,_HEIGHT,_LOC_Y_MAX-_LOC_Y_MIN  
+*SET,_CENT_X, 0.0  
+*SET,_CENT_Y, 0.0  
+
+*SET,_I_ND,_N_MIN   
+*SET,_I_EL,_E_MIN   
+*DIM,_NF_INFO,ARRAY,_N_COUNT,4  
+*DIM,_ND_INDEX,ARRAY,_N_MAX 
+
+*DO,I,1,_N_COUNT,1  
+*SET,_NF_INFO(I,1),_I_ND
+*SET,_ND_INDEX(_I_ND),I 
+*SET,_I_ND,NDNEXT(_I_ND)
+*ENDDO  
+
+*DO,I,1,_E_COUNT,1  
+*SET,_NI,NELEM(_I_EL,1) 
+*SET,_NJ,NELEM(_I_EL,2) 
+*SET,_LOC_XI,NX(_NI)-_LOC_X_MIN 
+*SET,_LOC_YI,NY(_NI)-_LOC_Y_MIN 
+*SET,_LOC_XJ,NX(_NJ)-_LOC_X_MIN 
+*SET,_LOC_YJ,NY(_NJ)-_LOC_Y_MIN 
+*GET,_E_CENT_X,ELEM,_I_EL,CENT,X
+*GET,_E_CENT_Y,ELEM,_I_EL,CENT,Y
+*IF,_E_CENT_X,GT,_CENT_X,THEN   
+*IF,_E_CENT_Y,GT,_CENT_Y,THEN   
+*SET,_E_I,-_E3-(_E4-_E3)*(1-_LOC_YI/_HEIGHT)
+*SET,_Q_I,-_Q1-(_Q2-_Q1)*_LOC_XI/_WIDTH 
+*SET,_E_J,-_E3-(_E4-_E3)*(1-_LOC_YJ/_HEIGHT)
+*SET,_Q_J,-_Q1-(_Q2-_Q1)*_LOC_XJ/_WIDTH 
+*ELSE   
+*SET,_E_I,-_E3-(_E4-_E3)*(1-_LOC_YI/_HEIGHT)
+*SET,_Q_I,0 
+*SET,_E_J,-_E3-(_E4-_E3)*(1-_LOC_YJ/_HEIGHT)
+*SET,_Q_J,0 
+*ENDIF  
+*ELSE   
+*IF,_E_CENT_Y,GT,_CENT_Y,THEN   
+*SET,_E_I, _E1+(_E2-_E1)*(1-_LOC_YI/_HEIGHT)
+*SET,_Q_I,-_Q1-(_Q2-_Q1)*_LOC_XI/_WIDTH 
+*SET,_E_J, _E1+(_E2-_E1)*(1-_LOC_YJ/_HEIGHT)
+*SET,_Q_J,-_Q1-(_Q2-_Q1)*_LOC_XJ/_WIDTH 
+*ELSE   
+*SET,_E_I,_E1+(_E2-_E1)*(1-_LOC_YI/_HEIGHT) 
+*SET,_Q_I,0 
+*SET,_E_J,_E1+(_E2-_E1)*(1-_LOC_YJ/_HEIGHT) 
+*SET,_Q_J,0 
+*ENDIF  
+*ENDIF  
+*SET,_FX_I,0.05*(7*_E_J+3*_E_I)*ABS(_LOC_YJ-_LOC_YI)
+*SET,_FY_I,0.05*(7*_Q_I+3*_Q_J)*ABS(_LOC_XJ-_LOC_XI)
+*SET,_FX_J,0.05*(3*_E_J+7*_E_I)*ABS(_LOC_YJ-_LOC_YI)
+*SET,_FY_J,0.05*(3*_Q_I+7*_Q_J)*ABS(_LOC_XJ-_LOC_XI)
+*SET,_NF_INFO(_ND_INDEX(_NI),2),_NF_INFO(_ND_INDEX(_NI),2)+_FX_I
+*SET,_NF_INFO(_ND_INDEX(_NI),3),_NF_INFO(_ND_INDEX(_NI),3)+_FY_I
+*SET,_NF_INFO(_ND_INDEX(_NJ),2),_NF_INFO(_ND_INDEX(_NJ),2)+_FX_J
+*SET,_NF_INFO(_ND_INDEX(_NJ),3),_NF_INFO(_ND_INDEX(_NJ),3)+_FY_J
+*SET,_I_EL,ELNEXT(_I_EL)
+*ENDDO  
+
+*DO,I,1,_N_COUNT,1  
+F,_NF_INFO(I,1),FX,_NF_INFO(I,2)
+F,_NF_INFO(I,1),FY,_NF_INFO(I,3)
+*ENDDO  
+*DEL,_ND_INDEX,,NOPR
+*DEL,_NF_INFO,,NOPR 
+
+! ==========================================================
+! 第四步：智能生成法向地基弹簧 
+! ==========================================================
+*GET,NMAX,NODE,,NUM,MAX	
+CSYS,1
+
+LOCAL,11,1, 0, 13.85
+LSEL,S,LINE,,1
+LSEL,A,LINE,,9
+NSLL,S,1
+NGEN,2,NMAX,ALL,,,1
+
+LOCAL,11,1, 4.213165, -1.388285
+LSEL,S,LINE,,2
+NSLL,S,1
+NGEN,2,NMAX,ALL,,,1
+
+LOCAL,11,1, 0, 0
+LSEL,S,LINE,,3,7
+NSLL,S,1
+NGEN,2,NMAX,ALL,,,1
+
+LOCAL,11,1, -4.213165, -1.388285
+LSEL,S,LINE,,8
+NSLL,S,1
+NGEN,2,NMAX,ALL,,,1
+
+CSDELE,11,,1
+CSYS,0
+
+TYPE,4
+MAT,3
+REAL,1
+*DO,I,1,NMAX,1
+E,I,I+NMAX
+*ENDDO
+
+! ==========================================================
+! 第五步：AMAP 高级映射划分网格
+! ==========================================================
+ALLSEL,ALL
+AATT,2,,2,0,1          
+MSHAPE,0,2D
+
+AMAP, 2, 24, 4, 2, 22
+AMAP, 9, 14, 4, 2, 12
+AMAP, 6, 27, 29, 9, 7
+AMAP, 13, 17, 19, 9, 7
+
+MSHKEY,1               
+ASEL, U, AREA,, 2
+ASEL, U, AREA,, 9
+ASEL, U, AREA,, 6
+ASEL, U, AREA,, 13
+AMESH, ALL
+
+ALLSEL,ALL
+LSEL,S,LINE,,10,18
+LATT,1,,3,,,,3         
+LMESH,ALL
+
+! ==========================================================
+! 第六步：边界条件与求解
+! ==========================================================
+ALLSEL,ALL
+NSEL,S,,,NMAX+1,2*NMAX
+D,ALL,ALL              
+
+ESEL,S,TYPE,,1
+NSLE,S
+NSEL,R,LOC,X,0
+D,ALL,UX,0             
+
+ESEL,S,TYPE,,1
+ESEL,A,TYPE,,3
+NSLE,S
+D,ALL,UZ,0
+D,ALL,ROTX,0
+D,ALL,ROTY,0
+ALLSEL,ALL
+
+/SOLU
+ACEL,,9.8
+ANTYPE,0
+TIME,1
+NROPT,FULL
+AUTOTS,ON	
+NSUBST,100
+OUTRES,ALL,ALL
+ALLSEL,ALL
+SOLVE
+
+! ==========================================================
+! ==========================================================
+! 第七步：后处理 (★统一单位制，翻转弯矩符号匹配论文★)
+! ==========================================================
+/POST1
+SET, LAST              
+
+ALLSEL,ALL
+ESEL,S,TYPE,,3
+ETABLE,WJI_R,SMISC,3
+ETABLE,WJJ_R,SMISC,16
+ETABLE,JLI_R,SMISC,6
+ETABLE,JLJ_R,SMISC,19
+ETABLE,ZLI_R,SMISC,1
+ETABLE,ZLJ_R,SMISC,14
+
+! 1. 弯矩处理：单位保持 N·m (同论文图12a)。
+! 乘以 -2.0 翻转正负号，让拱顶变正值(红色)！
+SADD, WJI, WJI_R, , -2.0
+SADD, WJJ, WJJ_R, , -2.0
+
+! 2. 轴力处理：单位转换为 kN (同论文图12b)。
+! 乘以 2.0 再除以 1000，系数为 0.002。
+SADD, ZLI, ZLI_R, , 0.002
+SADD, ZLJ, ZLJ_R, , 0.002
+
+! 3. 剪力处理：单位转换为 kN。
+! 系数同样为 0.002。
+SADD, JLI, JLI_R, , 0.002
+SADD, JLJ, JLJ_R, , 0.002
+
+! 开始出图 (若觉得图形鼓出来的方向反了，把 -1 改成 1 即可)
+PLLS,WJI,WJJ,1   
+/image,save,wanju,bmp   
+
+PLLS,ZLI,ZLJ,-1
+/image,save,zhouli,bmp  
+
+PLLS,JLI,JLJ,1
+/image,save,jianli,bmp  
+
+PRETAB,WJI,ZLI,JLI

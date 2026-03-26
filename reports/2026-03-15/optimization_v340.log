@@ -1,0 +1,99 @@
+[governance] code_fingerprint=e98a0246dfa6a1e6e8f622c5e9fd72426e302519133cbd73a1e166c8d2e1c79c
+Start Hybrid NSGA-II Optimization...
+Step 0: Calculating heuristic bounds...
+  > ULS Req: 2800 mm2
+  > SLS Req (D22): <= ULS (2800 mm2)
+  > Base Area: 2800 mm2
+  > Valid Range: [2240, 4200] mm2
+  > Generation 0/200, Front[0] size: 25
+  > Generation 10/200, Front[0] size: 200
+  > Generation 20/200, Front[0] size: 200
+  > Generation 30/200, Front[0] size: 200
+  > Generation 40/200, Front[0] size: 200
+  > Generation 50/200, Front[0] size: 200
+  > Generation 60/200, Front[0] size: 200
+  > Generation 70/200, Front[0] size: 200
+  > Generation 80/200, Front[0] size: 200
+  > Generation 90/200, Front[0] size: 200
+  > Generation 100/200, Front[0] size: 200
+  > Generation 110/200, Front[0] size: 200
+  > Generation 120/200, Front[0] size: 200
+  > Generation 130/200, Front[0] size: 200
+  > Generation 140/200, Front[0] size: 200
+  > Generation 150/200, Front[0] size: 200
+  > Generation 160/200, Front[0] size: 200
+  > Generation 170/200, Front[0] size: 200
+  > Generation 180/200, Front[0] size: 200
+  > Generation 190/200, Front[0] size: 200
+  > imageio not available, skip 3D GIF.
+Start Hybrid NSGA-II Optimization...
+Step 0: Calculating heuristic bounds...
+  > ULS Req: 2800 mm2
+  > SLS Req (D22): <= ULS (2800 mm2)
+  > Base Area: 2800 mm2
+  > Valid Range: [2240, 4200] mm2
+  > Generation 0/200, Front[0] size: 17
+  > Generation 10/200, Front[0] size: 200
+  > Generation 20/200, Front[0] size: 200
+  > Generation 30/200, Front[0] size: 200
+  > Generation 40/200, Front[0] size: 200
+  > Generation 50/200, Front[0] size: 200
+  > Generation 60/200, Front[0] size: 200
+  > Generation 70/200, Front[0] size: 200
+  > Generation 80/200, Front[0] size: 200
+  > Generation 90/200, Front[0] size: 200
+  > Generation 100/200, Front[0] size: 200
+  > Generation 110/200, Front[0] size: 200
+  > Generation 120/200, Front[0] size: 200
+  > Generation 130/200, Front[0] size: 200
+  > Generation 140/200, Front[0] size: 200
+  > Generation 150/200, Front[0] size: 200
+  > Generation 160/200, Front[0] size: 200
+  > Generation 170/200, Front[0] size: 200
+  > Generation 180/200, Front[0] size: 200
+  > Generation 190/200, Front[0] size: 200
+  > imageio not available, skip 3D GIF.
+Start Hybrid NSGA-II Optimization...
+Step 0: Calculating heuristic bounds...
+  > ULS Req: 2800 mm2
+  > SLS Req (D22): <= ULS (2800 mm2)
+  > Base Area: 2800 mm2
+  > Valid Range: [2240, 4200] mm2
+  > Generation 0/200, Front[0] size: 30
+  > Generation 10/200, Front[0] size: 200
+  > Generation 20/200, Front[0] size: 200
+  > Generation 30/200, Front[0] size: 200
+  > Generation 40/200, Front[0] size: 200
+  > Generation 50/200, Front[0] size: 200
+  > Generation 60/200, Front[0] size: 200
+  > Generation 70/200, Front[0] size: 200
+  > Generation 80/200, Front[0] size: 200
+  > Generation 90/200, Front[0] size: 200
+  > Generation 100/200, Front[0] size: 200
+  > Generation 110/200, Front[0] size: 200
+  > Generation 120/200, Front[0] size: 200
+  > Generation 130/200, Front[0] size: 200
+  > Generation 140/200, Front[0] size: 200
+  > Generation 150/200, Front[0] size: 200
+  > Generation 160/200, Front[0] size: 200
+  > Generation 170/200, Front[0] size: 200
+  > Generation 180/200, Front[0] size: 200
+  > Generation 190/200, Front[0] size: 200
+  > imageio not available, skip 3D GIF.
+
+=== Symmetric Design Summary ===
+A1: HRB400 D22 x 6, stirrup=HPB300 D12@160.0 (2 legs layout), dist=HRB400 D14@147.7 (7 bars ratio)
+A2: HRB400 D22 x 6, stirrup=HPB300 D12@160.0 (2 legs layout), dist=HRB400 D14@147.7 (7 bars ratio)
+A3: HRB400 D22 x 6, stirrup=HPB300 D12@160.0 (2 legs layout), dist=HRB400 D14@147.7 (7 bars ratio)
+B1: HRB400 D22 x 6, stirrup=HPB300 D12@160.0 (2 legs layout), dist=HRB400 D14@147.7 (7 bars ratio)
+B2: HRB400 D22 x 6, stirrup=HPB300 D12@160.0 (2 legs layout), dist=HRB400 D14@147.7 (7 bars ratio)
+C1: HRB400 D22 x 6, stirrup=HPB300 D12@160.0 (2 legs layout), dist=HRB400 D14@147.7 (7 bars ratio)
+C2: HRB400 D22 x 6, stirrup=HPB300 D12@160.0 (2 legs layout), dist=HRB400 D14@147.7 (7 bars ratio)
+
+Type Representative Blocks:
+  A: A3
+  B: B2
+  C: C2
+
+Report: report_v340.md
+Report CSV: report_v340.csv

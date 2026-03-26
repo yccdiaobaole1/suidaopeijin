@@ -1,0 +1,29 @@
+{
+  "geometry": {
+    "clearance_width": 13.3,
+    "clearance_height": 10.88,
+    "Angles": {
+      "alpha": 60,
+      "beta": 18.4,
+      "delta": 15.4,
+      "theta": 33.8
+    },
+    "Radii": {
+      "R1": 7.0,
+      "R3": 6.65,
+      "R5": 9.2
+    }
+  },
+  "section": {
+    "b": 1000,
+    "h": 700,
+    "cover": 50,
+    "concrete_grade": "C50",
+    "min_safety_factor_uls": 1.1
+  },
+  "optimization": {
+    "pop_size": 200,
+    "max_gen": 200,
+    "preference": "balanced"
+  }
+}

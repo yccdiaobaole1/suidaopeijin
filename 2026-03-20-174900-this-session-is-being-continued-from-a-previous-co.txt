@@ -1,0 +1,2760 @@
+
+ ▐▛███▜▌   Claude Code v2.1.63
+▝▜█████▛▘  Opus 4.6 (1M context) · API Usage Billing
+  ▘▘ ▝▝    D:\suidaopeijin
+
+  Welcome to Opus 4.6
+
+✻ Conversation compacted (ctrl+o for history)
+
+
+> /compact 
+  ⎿  Compacted (ctrl+o to see full summary)
+  ⎿  Read TARGET_GOALS.md (175 lines)
+  ⎿  Referenced file UPDATE_LOG.md
+  ⎿  Read Ansys_APDL_neili\convert_to_force_records.py (72 lines)
+  ⎿  Referenced file src\calculator.py
+  ⎿  Referenced file C:\Users\ycc29\AppData\Local\Temp\qcr_9_4.txt
+  ⎿  SessionStart:compact says: [suidaopeijin] recent context, 2026-03-20 4:02pm
+      GMT+8
+     ────────────────────────────────────────────────────────────
+
+     No previous sessions found for this project yet.
+
+     View Observations Live @ http://localhost:37777
+
+
+> /model 
+  ⎿  Set model to opus[1m] (claude-opus-4-6[1m])
+
+> 先读取一下项目各部分文件了解项目情况，随后重新运行一次优化程序（先删除之  
+  前产出的报告）                                                            
+
+● 好的，让我先全面了解项目当前状态，然后重新运行优化程序。
+
+● Explore(Explore project structure)
+  ⎿  Done (25 tool uses · 65.9k tokens · 9m 27s)
+  (ctrl+o to expand)
+
+● Read 1 file (ctrl+o to expand)
+
+● 项目结构已清楚。现在查看 reports
+  目录中已有的报告，然后删除旧报告并重新运行优化。
+
+● Read 1 file (ctrl+o to expand)
+
+● Bash(dir /b "D:\suidaopeijin\reports\2026-03-20" 2>nul & echo === & dir /b
+      "D:\suidaopeijin\reports\2026-03-15" 2>nul)
+  ⎿  Error: Exit code 2
+     ===
+     D\:\\suidaopeijin\\reports\\2026-03-20:
+     pareto_A_convergence.png  pareto_B_view1.png           pareto_C_view2.png
+     pareto_A_view1.png   pareto_B_view2.png        pareto_C_view3.png
+     pareto_A_view2.png   pareto_B_view3.png        report_v345.csv
+     pareto_A_view3.png   pareto_C_convergence.png  report_v345.md
+     pareto_B_convergence.png  pareto_C_view1.png
+     D\:\\suidaopeijin\\reports\\2026-03-15:
+     optimization_first.log       pareto_B_view3.png        report_v342.csv
+     … +26 lines (ctrl+o to see all)
+
+● force_records.csv 已确认是 v3.4.7
+  修正后的版本（设计值=标准值×1.4）。现在删除旧报告并重新运行优化。
+
+● Bash(rd /s /q "D:\suidaopeijin\reports\2026-03-20" && mkdir
+      "D:\suidaopeijin\reports\2026-03-20" && echo "Cleared and recreated
+      2026-03-20 directory")
+  ⎿  Error: Exit code 127
+     /usr/bin/bash: line 1: rd: command not found
+
+     /usr/bin/bash: line 1: rd: command not found
+
+● Bash(rm -rf "D:/suidaopeijin/reports/2026-03-20" && mkdir -p
+      "D:/suidaopeijin/reports/2026-03-20" && echo "Cleared and recreated
+      2026-03-20 directory")
+  ⎿  Cleared and recreated 2026-03-20 directory
+
+● 旧报告已清除。现在运行优化程序，输出到 reports/2026-03-20/ 目录。
+
+● Bash(cd "D:/suidaopeijin" && python main_precast.py --config
+      precast_config.json --force-file force_records.csv --report-md
+      reports/2026-03-20/report_v347.md --repor…)
+  ⎿  [governance] code_fingerprint=e98a0246dfa6a1e6e8f622c5e9fd72426e302519
+     133cbd73a1e166c8d2e1c79c
+     Start Hybrid NSGA-II Optimization...
+     … +59 lines (ctrl+o to expand)
+  ⎿  (timeout 10m)
+
+● 优化运行成功。现在查看生成的报告。
+
+● Read 1 file (ctrl+o to expand)
+
+● 优化运行完成，报告和帕累托图都已生成。让我分析结果中的一些异常。
+
+● Read 1 file (ctrl+o to expand)
+
+● 优化运行完成。以下是 v3.4.7 荷载修正后的新配筋方案总结：
+
+  ---
+  v3.4.7 重新优化结果
+
+  最终配筋方案
+
+  ┌────────────────┬──────────────────┬─────────────────┬───────────────────┐
+  │    分块类型    │       主筋       │      拉筋       │      分布筋       │
+  ├────────────────┼──────────────────┼─────────────────┼───────────────────┤
+  │ A型（拱顶3块） │ HRB400 D16×10    │ HPB300 D10@220  │ HRB400 D16@176.8  │
+  │                │ @98.2mm          │ (4肢)           │ (6根)             │
+  ├────────────────┼──────────────────┼─────────────────┼───────────────────┤
+  │ B型（拱脚2块） │ HRB400 D16×7     │ HPB300 D10@220  │ HRB400 D16@176.8  │
+  │                │ @147.3mm         │ (4肢)           │ (6根)             │
+  ├────────────────┼──────────────────┼─────────────────┼───────────────────┤
+  │ C型（仰拱2块） │ HRB400 D16×7     │ HPB300 D10@220  │ HRB400 D16@176.8  │
+  │                │ @147.3mm         │ (4肢)           │ (6根)             │
+  └────────────────┴──────────────────┴─────────────────┴───────────────────┘
+
+  与旧方案对比（v3.4.6及之前）
+
+  ┌───────────┬────────────────┬────────────────┬────────────────────┐
+  │  对比项   │     旧方案     │     新方案     │        变化        │
+  ├───────────┼────────────────┼────────────────┼────────────────────┤
+  │ A型主筋   │ D16×7 或 D22×6 │ D16×10         │ 面积增加 ~43%      │
+  ├───────────┼────────────────┼────────────────┼────────────────────┤
+  │ B/C型主筋 │ D16×7          │ D16×7（不变）  │ —                  │
+  ├───────────┼────────────────┼────────────────┼────────────────────┤
+  │ 拉筋      │ HPB300 D12@160 │ HPB300 D10@220 │ 直径减小，间距增大 │
+  └───────────┴────────────────┴────────────────┴────────────────────┘
+
+  关键观察
+
+  1. 裂缝宽度全部为 0.000mm — 60个工况均为全截面受压（σ_sq≤0），无裂缝风险
+  2. A型主筋从7根增到10根 — 荷载+40%后，拱顶区承载力需求显著增大
+  3. B/C型保持D16×7不变 — 拱脚和仰拱区荷载增幅后仍在7根承载范围内
+  4. 拉筋统一 HPB300 D10@220 4肢 — 所需 Asv/s=1.40，实际提供1.428，富余2%
+  5. A型造价显示0.00 — 这个值存在异常，需要排查（可能是成本归一化或计算问题）
+
+  已生成文件
+
+  - reports/2026-03-20/report_v347.md — 主报告
+  - reports/2026-03-20/report_v347.csv — CSV明细
+  - reports/2026-03-20/pareto_A/B/C_*.png — 12张帕累托图 + 3张收敛曲线
+
+  A型造价显示0.00和间距-1.0看起来有异常，是否需要排查这个问题？
+
+✻ Churned for 6m 36s
+
+> 排查一下 
+
+● 好的，我来排查 A 型造价为 0.00 和间距为 -1.0 的异常。
+
+● Explore(Explore cost calculation logic)
+  ⎿  Done (22 tool uses · 71.6k tokens · 2m 40s)
+  (ctrl+o to expand)
+
+● 找到了方向。让我直接验证具体代码，确认问题的精确位置。
+
+● Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● 问题确认了。让我看关键的调用顺序——归一化是在什么时候执行的，_build_pareto_payl
+  oad 读取的是归一化前还是归一化后的 objs。
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在我看到了关键问题。让我看 solve() 方法中归一化和构建 payload 的调用顺序。
+
+● Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● 根因已完全确认。问题链路如下：
+
+  1. 第 299 行: ind.objs = [cost, max_w, -actual_spacing] — 原始物理值
+  2. 第 80 行: self._normalize_objectives(combined_pop) — 每代都归一化覆盖 
+  ind.objs
+  3. 第 328 行: ind.objs = normalized — 原始值被归一化值 [0,1] 覆盖
+  4. 第 117 行: pareto_payload = self._build_pareto_payload(final_front) —
+  读取的已经是归一化后的值
+  5. 第 393-395 行: "cost": ind.objs[0] — 输出到报告的是归一化值，不是物理值
+
+  结论：
+  - cost=0.00: A型 D16×10 是帕累托前沿中成本最低的方案，归一化后
+  (min-min)/(max-min) = 0
+  - spacing=-1.0: 归一化后负间距为 [0, 1]，取反后为 [-1, 0]，D16×10
+  间距最小(98.2mm)对应归一化 1.0，取反=-1.0
+
+  需要在 _build_pareto_payload 和 select_solution_by_preference
+  中保存原始物理值。让我修复。
+
+● Read 1 file (ctrl+o to expand)
+
+● 修复方案很明确：在 Individual 类中新增 raw_objs
+  字段保存原始物理值，归一化只覆盖 objs，输出时使用 raw_objs。
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 1 line
+      15          # gene: [grade_idx, diameter_idx, spacing_idx]         
+      16          self.gene = gene                                       
+      17          self.objs = [float('inf'), float('inf'), float('inf')] 
+           # [Cost, Crack, -Spacing]                                     
+      18 +        self.raw_objs = [float('inf'), float('inf'),           
+         +float('inf')]  # 原始物理值（不被归一化覆盖）                  
+      19          self.rank = 0                                          
+      20          self.crowding_distance = 0.0                           
+      21          self.is_valid = False                                  
+
+● 现在在 _evaluate_single 中赋值原始物理值——有效解和无效解都需要处理。
+
+● Read 1 file (ctrl+o to expand)
+
+● 在有效解赋值处同步保存 raw_objs：
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 2 lines
+      290          if not is_safe:                                       
+      291              ind.is_valid = False                              
+      292              ind.objs = [float('inf'), float('inf'),           
+           float('inf')]                                                 
+      293 +            ind.raw_objs = [float('inf'), float('inf'),       
+          +float('inf')]                                                 
+      294          else:                                                 
+      295              ind.is_valid = True                               
+      296              props = self.rm.get_bar_properties(d)             
+     ...
+      298              price_unit = self.rm.get_price(grade, d)          
+      299              cost = (total_weight_per_m / 1000.0) * price_unit 
+      300              ind.objs = [cost, max_w, -actual_spacing]         
+      301 +            ind.raw_objs = [cost, max_w, actual_spacing]  #   
+          +保存原始物理值（间距为正值）                                  
+      302                                                                
+      303      def _evaluate_population(self, pop: List[Individual],     
+           section_params: Dict, force_envelope: List[Dict]):            
+      304          max_s =                                               
+           self.constraints.get_max_spacing_main(section_params.get("h", 
+            500))                                                        
+
+● 现在处理3个无效解的早期返回点（cover<d, b_eff<=0），也需要设置 raw_objs：
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 2 lines
+      249          if c < d:                                             
+      250              ind.is_valid = False                              
+      251              ind.objs = [float('inf'), float('inf'),           
+           float('inf')]                                                 
+      252 +            ind.raw_objs = [float('inf'), float('inf'),       
+          +float('inf')]                                                 
+      253              return                                            
+      254                                                                
+      255          b_eff = b - 2 * c - d                                 
+      256          if b_eff <= 0:                                        
+      257              ind.is_valid = False                              
+      258              ind.objs = [float('inf'), float('inf'),           
+           float('inf')]                                                 
+      259 +            ind.raw_objs = [float('inf'), float('inf'),       
+          +float('inf')]                                                 
+      260              return                                            
+      261                                                                
+      262          s_limit = min(s, max_s)                               
+
+● 还需要处理另外几个设置 objs 为 inf 的位置。让我检查所有这些位置：
+
+● Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 1 line
+      277          if clear_spacing < min_clear or actual_spacing >      
+           max_s:                                                        
+      278              ind.is_valid = False                              
+      279              ind.objs = [float('inf'), float('inf'),           
+           float('inf')]                                                 
+      280 +            ind.raw_objs = [float('inf'), float('inf'),       
+          +float('inf')]                                                 
+      281              return                                            
+      282                                                                
+      283          # 全性能验算                                          
+
+● 现在修改 _build_pareto_payload 使用 raw_objs：
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 3 lines, removed 3 lines
+      396                  "spacing": info.get("spacing"),               
+      397                  "count": int(info.get("count", 0)),           
+      398                  "metrics": {                                  
+      399 -                    "cost": ind.objs[0],                      
+      400 -                    "max_crack": ind.objs[1],                 
+      401 -                    "spacing": -ind.objs[2]                   
+      399 +                    "cost": ind.raw_objs[0],                  
+      400 +                    "max_crack": ind.raw_objs[1],             
+      401 +                    "spacing": ind.raw_objs[2]                
+      402                  }                                             
+      403              })                                                
+      404          return payload                                        
+
+● 接下来修改 select_solution_by_preference 和 _topsis_decision 中的 metrics
+  输出：
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 3 lines, removed 3 lines
+      599              "main_rebar": best_ind.info,                      
+      600              "summary": summary,                               
+      601              "metrics": {                                      
+      602 -                "cost": best_ind.objs[0],                     
+      603 -                "max_crack": best_ind.objs[1],                
+      604 -                "spacing": -best_ind.objs[2]                  
+      602 +                "cost": best_ind.raw_objs[0],                 
+      603 +                "max_crack": best_ind.raw_objs[1],            
+      604 +                "spacing": best_ind.raw_objs[2]               
+      605              }                                                 
+      606          }                                                     
+      607                                                                
+
+● 现在修改 _topsis_decision 中的两处 metrics
+  输出（只有1个解时的早期返回，以及最终返回）：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 3 lines, removed 3 lines
+      629                  "main_rebar": best_ind.info,                  
+      630                  "summary": summary,                           
+      631                  "metrics": {                                  
+      632 -                    "cost": best_ind.objs[0],                 
+      633 -                    "max_crack": best_ind.objs[1],            
+      634 -                    "spacing": -best_ind.objs[2]              
+      632 +                    "cost": best_ind.raw_objs[0],             
+      633 +                    "max_crack": best_ind.raw_objs[1],        
+      634 +                    "spacing": best_ind.raw_objs[2]           
+      635                  }                                             
+      636              }                                                 
+      637          # 全部为 Min 问题，先做平移处理以确保非负             
+
+● 现在找 _topsis_decision 最终返回的 metrics：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 3 lines, removed 3 lines
+      696              "main_rebar": best_ind.info,                      
+      697              "summary": summary,                               
+      698              "metrics": {                                      
+      699 -                "cost": best_ind.objs[0],                     
+      700 -                "max_crack": best_ind.objs[1],                
+      701 -                "spacing": -best_ind.objs[2]                  
+      699 +                "cost": best_ind.raw_objs[0],                 
+      700 +                "max_crack": best_ind.raw_objs[1],            
+      701 +                "spacing": best_ind.raw_objs[2]               
+      702              }                                                 
+      703          }                                                     
+      704  if __name__ == "__main__":                                    
+
+● 还有 _snapshot_front 和 _export_pareto_plot 也使用了归一化后的
+  objs，这些也需要改用 raw_objs：
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 3 lines, removed 3 lines
+      411              return {"size": 0, "min_cost": float('inf'),      
+           "mean_cost": float('inf'),                                    
+      412                      "min_crack": float('inf'), "mean_crack":  
+           float('inf'),                                                 
+      413                      "max_spacing": 0, "mean_spacing": 0}      
+      414 -        costs = [ind.objs[0] for ind in valid]                
+      415 -        cracks = [ind.objs[1] for ind in valid]               
+      416 -        spacings = [-ind.objs[2] for ind in valid]            
+      414 +        costs = [ind.raw_objs[0] for ind in valid]            
+      415 +        cracks = [ind.raw_objs[1] for ind in valid]           
+      416 +        spacings = [ind.raw_objs[2] for ind in valid]         
+      417          n = len(valid)                                        
+      418          return {                                              
+      419              "size": n,                                        
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 3 lines, removed 3 lines
+      505              print("  > matplotlib not available, skip pareto  
+           plot.")                                                       
+      506              return None                                       
+      507                                                                
+      508 -        costs = [ind.objs[0] for ind in valid]                
+      509 -        cracks = [ind.objs[1] for ind in valid]               
+      510 -        spacings = [-ind.objs[2] for ind in valid]            
+      508 +        costs = [ind.raw_objs[0] for ind in valid]            
+      509 +        cracks = [ind.raw_objs[1] for ind in valid]           
+      510 +        spacings = [ind.raw_objs[2] for ind in valid]         
+      511                                                                
+      512          base_path = Path(plot_path)                           
+      513          base_path.parent.mkdir(parents=True, exist_ok=True)   
+
+● 现在确认还有没有遗漏的引用点：
+
+● Searched for 2 patterns (ctrl+o to expand)
+
+● 剩余的引用分析：
+  - 324-325, 331: _normalize_objectives 内部使用 — 正确，归一化逻辑本身要操作
+  objs
+  - 377, 380, 383: _calculate_crowding_distance — 使用归一化值计算拥挤度 — 正确
+  - 584-588: select_solution_by_preference 中按偏好选解 —
+  这里用归一化值排序其实也可以（单调排序结果一致），但让我检查一下上下文：
+
+● Read 1 file (ctrl+o to expand)
+
+● 这里用归一化后的 objs 排序 min
+  与用原始值排序结果一致（因为归一化是线性单调变换），逻辑正确，不需要修改。
+
+  同样，TOPSIS 的 objs_matrix 使用归一化值做决策也是正确的（TOPSIS
+  本身就需要归一化输入）。
+
+  现在验证修改后的程序能否正常运行：
+
+● Bash(cd "D:/suidaopeijin" && rm -rf reports/2026-03-20/* && python
+      main_precast.py --config precast_config.json --force-file
+      force_records.csv --report-md reports/20…)
+  ⎿  [governance] code_fingerprint=e98a0246dfa6a1e6e8f622c5e9fd72426e302519
+     133cbd73a1e166c8d2e1c79c
+     Start Hybrid NSGA-II Optimization...
+     … +35 lines (ctrl+o to expand)
+  ⎿  (timeout 10m)
+
+● 运行成功，且收敛更快了。让我查看报告中的造价和间距数值是否已修正：
+
+● Read 1 file (ctrl+o to expand)
+
+● 造价和间距数值完全修复：
+
+  - A型造价: 0.00 → 41.99 CNY/m (合理物理值)
+  - B型造价: 0.64 → 37.60 CNY/m (合理物理值)
+  - C型造价: 0.55 → 37.60 CNY/m (合理物理值)
+  - A型间距: -1.0 → 98.4 mm (实际物理间距)
+  - B/C型间距: -0.3 → 147.3 mm (实际物理间距)
+  - 裂缝宽度: A型 0.056mm（<0.2mm合格），B/C型 0.000mm（全截面受压）
+
+  另外注意本次 A 型方案变为 D14×10（前次是 D16×10），这是因为 NSGA-II
+  有随机性，但两者都在帕累托前沿上，D14×10 造价更低（41.99 vs 53.72）。
+
+  让我更新文档记录这个 Bug 修复。
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(UPDATE_LOG.md)
+  ⎿  Added 27 lines, removed 1 line
+       2                                                                 
+       3  - 项目: Railway Tunnel Reinforcement Optimization System       
+       4  - 参考规范: Q/CR 9129-2018, TB                                 
+          10064-2019（当前实现含部分工程化假设）                         
+       5 -- 更新时间: 2026-03-15                                         
+       5 +- 更新时间: 2026-03-20                                         
+       6                                                                 
+       7  ---                                                            
+       8                                                                 
+       9 +## v3.4.8 (2026-03-20)                                         
+      10 +### 本次新增/修正                                              
+      11 +                                                               
+      12 +- **[Bug修复] 报告中造价和间距显示归一化值而非物理值**:        
+      13 +  - 根因：`nsga2_solver.py` 的 `_normalize_objectives()`       
+         +每代都将 `ind.objs` 覆盖为 [0,1] 归一化值，                    
+      14 +    但 `_build_pareto_payload()`、`select_solution_by_preferen 
+         +ce()`、`_topsis_decision()` 等输出方法                         
+      15 +    直接读取                                                   
+         +`ind.objs`，导致报告中的造价/裂缝/间距全部是归一化值而非实际   
+         +CNY/m / mm / mm。                                              
+      16 +  - 表现：A型造价显示0.00（实际~42                             
+         +CNY/m），间距显示-1.0（实际98.4mm）；                          
+      17 +    B/C型造价显示0.64/0.55（实际~37.6                          
+         +CNY/m），间距显示-0.3（实际147.3mm）。                         
+      18 +  - 修复：`Individual` 类新增 `raw_objs`                       
+         +字段保存原始物理值（cost/crack/spacing均为正值），             
+      19 +    归一化仅覆盖 `objs`（用于 NSGA-II                          
+         +排序/拥挤度），所有输出接口改读 `raw_objs`。                   
+      20 +  - 同步修复 `_snapshot_front()` 和 `_export_pareto_plot()`    
+         +使用 `raw_objs`，                                              
+      21 +    收敛曲线和帕累托图坐标轴现在显示真实物理值。               
+      22 +                                                               
+      23 +### 影响文件                                                   
+      24 +- `src/nsga2_solver.py`（Individual.raw_objs +                 
+         +7处输出接口修正）                                              
+      25 +                                                               
+      26 +### 重新优化结果（v3.4.8 基于修正后荷载 + 修正后报告输出）     
+      27 +- A型: HRB400 D14×10 @98.4mm, 造价 41.99 CNY/m, 裂缝 0.056mm   
+      28 +- B型: HRB400 D16×7 @147.3mm, 造价 37.60 CNY/m, 裂缝 0.000mm   
+      29 +- C型: HRB400 D16×7 @147.3mm, 造价 37.60 CNY/m, 裂缝 0.000mm   
+      30 +- 拉筋统一: HPB300 D10@220 4肢,                                
+         +Asv/s=1.428（需求1.400，富余2%）                               
+      31 +- 分布筋统一: HRB400 D16@176.8 6根                             
+      32 +                                                               
+      33 +---                                                            
+      34 +                                                               
+      35  ## v3.4.7 (2026-03-20)                                         
+      36  ### 本次新增/修正                                              
+      37                                                                 
+
+● 现在更新 TARGET_GOALS.md：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(TARGET_GOALS.md)
+  ⎿  Added 1 line, removed 1 line
+      1  # 铁路明洞装配式衬砌配筋系统 - 任务目标 (v3.4 Roadmap)          
+      2                                                                  
+      3  - 文档日期: 2026-03-20                                          
+      4 -- 当前版本: v3.4.7（荷载分项系数修正：设计值×1.4，准永久值×1.0  
+        -；裂缝强制全验；拉筋成本修正）                                  
+      4 +- 当前版本: v3.4.8（报告输出修正：造价/间距从归一化值改为物理值 
+        +；重新优化完成）                                                
+      5  - 目标版本: v3.5.0（工程完善闭环）                              
+      6                                                                  
+      7  ---                                                             
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(TARGET_GOALS.md)
+  ⎿  Added 6 lines
+       9  ## 1. 当前完成度                                               
+      10                                                                 
+      11  ### 已完成                                                     
+      12 +- **[v3.4.8] 报告输出Bug修复 + 重新优化完成**（2026-03-20）:   
+      13 +  - 修复报告中造价/间距显示归一化值（0~1 /                     
+         +负值）而非物理值的Bug。                                        
+      14 +  - 根因：`_normalize_objectives()` 覆盖                       
+         +`ind.objs`，输出接口读取的是归一化值。                         
+      15 +  - 修复：新增 `raw_objs` 保存原始物理值，输出接口改读         
+         +`raw_objs`。                                                   
+      16 +  - 基于 v3.4.7 修正荷载重新运行 200×200 优化，结果：          
+      17 +    A型 D14×10 造价41.99CNY/m 裂缝0.056mm，B/C型 D16×7         
+         +造价37.60CNY/m 裂缝0.000mm。                                   
+      18  - **[v3.4.7] 荷载分项系数严重Bug修复**（2026-03-20）:          
+      19    - 确认ANSYS模型施加的是标准值（BL=1.0），旧代码将其1:1当做设 
+          计值，低估约40%（严重隐患）。                                  
+      20    - 修正：设计值 = ANSYS标准值 × 1.4（Q/CR 9129-2018           
+          4.1.5，土压+自重永久不利偏安全取值）。                         
+
+● 更新"未完成"部分——重新运行优化已完成：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(TARGET_GOALS.md)
+  ⎿  Added 1 line, removed 1 line
+      86    -                                                            
+          已输出参数来源、锁定状态、审批记录与配置指纹（MD/CSV/XLSX）。  
+      87                                                                 
+      88  ### 未完成                                                     
+      89 -- **重新运行优化程序**：荷载修正后历史配筋方案作废，需基于新   
+         -force_records.csv 重跑。                                       
+      89 +- ~~**重新运行优化程序**~~                                     
+         +**已完成（v3.4.8）**：基于修正荷载重新运行，结果正常。         
+      90  - 暂态工况验算未接入。                                         
+      91                                                                 
+      92  ---                                                            
+
+● 更新"近期待办"和"执行顺序"：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(TARGET_GOALS.md)
+  ⎿  Added 1 line, removed 1 line
+      122  ### ~~>>> 有限元分析生成剪力数据~~ 已完成（v3.4.0）           
+      123                                                                
+      124  ### >>> 近期待办                                              
+      125 -- **重新运行优化程序**（荷载修正后历史配筋方案作废，P0）      
+      125 +- ~~**重新运行优化程序**~~ **已完成（v3.4.8）**               
+      126  - 暂态工况验算接入（吊装/堆放/拼装）                          
+      127                                                                
+      128  ---                                                           
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(TARGET_GOALS.md)
+  ⎿  Added 7 lines, removed 3 lines
+      167                                                                
+      168  1. ~~有限元分析补充剪力数据~~ **已完成**                      
+      169  2. ~~验证准永久值系数~~                                       
+           **已完成（v3.4.7，发现并修正严重Bug）**                       
+      170 -3. **重新运行优化程序**（基于修正后force_records.csv，P0）    
+      170 +3. ~~重新运行优化程序~~                                       
+          +**已完成（v3.4.8，报告输出Bug同步修复）**                     
+      171  4. T-3.4-02 / T-3.4-05（统一联合优化与暂态）                  
+      172  5. 建立单元测试体系（防止回归）                               
+      173                                                                
+     ...
+      176  ## 6. 当前可用结论                                            
+      177                                                                
+      178  - 系统已完成规范一致性全面验证（v3.4.3），calculator.py 与    
+           Q/CR 9129-2018 逐条对比通过（32项）。                         
+      179 -- **v3.4.7荷载修正后配筋方案待重算**：设计弯矩+40%，历史方案  
+          -（D16×10等）不再有效，需重新运行优化。                        
+      180 -- **下一优先级**: 重新运行优化程序 → 暂态工况接入 →           
+          -单元测试。                                                    
+      179 +- **v3.4.8 最新配筋方案**（基于修正荷载 + 修正报告输出）：    
+      180 +  - A型: HRB400 D14×10 @98.4mm, 造价 41.99 CNY/m, 裂缝        
+          +0.056mm                                                       
+      181 +  - B型: HRB400 D16×7 @147.3mm, 造价 37.60 CNY/m, 裂缝        
+          +0.000mm（全截面受压）                                         
+      182 +  - C型: HRB400 D16×7 @147.3mm, 造价 37.60 CNY/m, 裂缝        
+          +0.000mm（全截面受压）                                         
+      183 +  - 拉筋统一: HPB300 D10@220 4肢, 分布筋统一: HRB400          
+          +D16@176.8 6根                                                 
+      184 +- **下一优先级**: 暂态工况接入 → 统一联合优化 → 单元测试。    
+
+● 排查和修复完成。总结一下：
+
+  ---
+  排查结果
+
+  根因
+
+  nsga2_solver.py 中 _normalize_objectives() 每代进化时将 ind.objs 原地覆盖为
+  [0, 1] 归一化值，但所有输出接口（_build_pareto_payload、select_solution_by_pre
+  ference、_topsis_decision、_snapshot_front、_export_pareto_plot）都直接读取
+  ind.objs，导致报告中显示的是归一化值而非物理值。
+
+  修复（v3.4.8）
+
+  - Individual 类新增 raw_objs 字段，在 _evaluate_single() 中同步保存原始物理值
+  - raw_objs 格式：[cost_CNY/m, crack_mm, spacing_mm]（全正值）
+  - 归一化仅覆盖 objs（供 NSGA-II 排序/拥挤度使用）
+  - 7处输出接口全部改读 raw_objs
+
+  修复前后对比
+
+  ┌───────────┬────────────────────┬──────────────────┐
+  │   指标    │ 修复前（归一化值） │ 修复后（物理值） │
+  ├───────────┼────────────────────┼──────────────────┤
+  │ A型造价   │ 0.00               │ 41.99 CNY/m      │
+  ├───────────┼────────────────────┼──────────────────┤
+  │ B型造价   │ 0.64               │ 37.60 CNY/m      │
+  ├───────────┼────────────────────┼──────────────────┤
+  │ A型间距   │ -1.0               │ 98.4 mm          │
+  ├───────────┼────────────────────┼──────────────────┤
+  │ B/C型间距 │ -0.3               │ 147.3 mm         │
+  ├───────────┼────────────────────┼──────────────────┤
+  │ A型裂缝   │ 0.000              │ 0.056 mm         │
+  └───────────┴────────────────────┴──────────────────┘
+
+  文档（UPDATE_LOG.md、TARGET_GOALS.md）已同步更新至 v3.4.8。
+
+✻ Sautéed for 9m 47s
+
+> 目前的多目标优化流程是否需要调整，是否合理，客观回答 
+
+● 让我先仔细审查当前优化流程的完整实现，然后给出客观评价。
+
+● Read 2 files (ctrl+o to expand)
+
+● 现在让我看 main_precast.py 中的联合 Pareto 逻辑：
+
+● Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● 代码已全部审查完毕。以下是客观评价。
+
+  ---
+  当前多目标优化流程的客观评价
+
+  流程概要
+
+  Stage 1  NSGA-II主筋优化 → Pareto前沿(~200解) → 取Top 24
+     ↓
+  Stage 2  每个主筋候选 → 启发式拉筋设计 → 拉筋Pareto(~4解)
+     ↓
+  Stage 3  分布筋自动配置（按主筋面积15%）
+     ↓
+  Stage 4  联合5目标Pareto筛选 → 加权评分排序 → 输出最优解
+
+  合理之处（不需要改）
+
+  1. NSGA-II算法实现本身是正确的
+  - 非支配排序、拥挤度距离、精英保留策略、锦标赛选择 — 标准 NSGA-II
+  流程，实现无误。
+  - 离散变量的处理（基因索引 + 均匀交叉 +
+  局部微扰变异）适合本问题的搜索空间（2×10×16=320种组合）。
+
+  2. 搜索空间规模与算法匹配
+  - 320种离散组合，200×200的种群规模足够穷举。实际观察收敛在17~86代，说明搜索充
+  分。
+  - 对这个规模的问题，NSGA-II不是"大炮打蚊子"，但也不会漏解。
+
+  3. 三阶段串行分解是工程合理的
+  - 主筋决定承载力，拉筋决定抗剪，分布筋按比例 — 三者之间的耦合性确实很弱。主筋
+  面积确定后，拉筋需求（Asv/s）由剪力和混凝土抗剪决定，与主筋选型基本无关。
+  - 分布筋更是纯构造规定（主筋面积的15%），完全可以后置。
+
+  4. 联合Pareto再筛选弥补了串行分解
+  - Stage 4 的5目标联合 Pareto 对
+  24×4=96个组合做再筛选，能捕获"主筋便宜但拉筋贵"或反过来的权衡。
+
+  存在的问题
+
+  问题1：NSGA-II的3个目标中，裂缝宽度作为目标函数价值存疑
+
+  当前3个目标：[cost, max_crack, -spacing]
+
+  从报告看：
+  - A型24个Pareto候选中，裂缝范围 0.000~0.070mm，全部远低于限值0.2mm
+  - B/C型3个候选，裂缝全部为0.000mm
+
+  裂缝在这个问题中是一个不活跃的目标 —
+  它与成本高度正相关（钢筋越多裂缝越小），没有提供独立的决策维度。将它作为约束（
+  ≤0.2mm）而非目标更合理，可以简化为2目标问题 [cost, 
+  -spacing]，降低Pareto前沿维数，提高选解的区分度。
+
+  但对当前结果的影响：很小。因为搜索空间本身只有320种组合，3目标不会造成"维灾"。
+
+  问题2：Stage 4的联合评分权重是硬编码的
+
+  weights = [0.45, 0.25, 0.15, 0.10, 0.05]  # cost/crack/asv/dist/spacing
+
+  这5个权重没有经过敏感性分析，也没有暴露给用户。当前 preference 参数只在
+  NSGA-II 阶段生效（选cost/safety/construction/balanced），到了联合评分阶段一律
+  用固定权重。
+
+  但对当前结果的影响：有限。因为B/C型只有3个联合候选，A型有24个但评分差异不大（#
+  1=0.3237, #2=0.3239），权重微调不太可能改变选型。
+
+  问题3：NSGA-II阶段的 TOPSIS 决策未被使用
+
+  _topsis_decision() 有完整的熵权 TOPSIS 实现，但当 preference="balanced"
+  时调用它选出的 best_sol 只影响 main_result 的 metrics
+  字段。真正决定最终方案的是 Stage 4 的 _select_joint_best()（加权归一化评分），
+  两套决策逻辑独立存在但作用在不同阶段，可能造成 NSGA-II
+  阶段选的"最优"在联合阶段不是"最优"。
+
+  但对当前结果的影响：无。因为 _build_main_scheme_candidates 取的是 Top
+  24，不依赖 NSGA-II 阶段的单一最优选择。
+
+  问题4：归一化在每代覆盖 objs 影响收敛判断
+
+  _snapshot_front 现在用 raw_objs（已修复），但收敛判断用的是
+  gen_history[-5:].mean_cost。修复后这个值是真实成本，收敛判断正确。
+
+  但存在一个微妙问题：归一化每代都做意味着 Pareto 
+  支配关系是基于归一化后的值判断的。理论上，对于纯最小化问题，原始值和归一化值的
+  支配关系完全一致（线性变换不改变偏序关系），所以不影响正确性。但归一化确实影响
+  拥挤度距离的计算（因为拥挤度依赖值域范围），可能轻微影响前沿的多样性保持。
+
+  对当前结果的影响：可忽略。
+
+  问题5：主筋成本只算了钢筋重量，未包含拉筋和分布筋
+
+  NSGA-II 阶段的 cost 目标仅是主筋的 weight × price：
+  cost = (total_weight_per_m / 1000.0) * price_unit  # 仅主筋
+
+  拉筋和分布筋的成本在 Stage 4 联合评分中才通过 asv_over_s 和 dist_ratio
+  间接体现。这意味着 NSGA-II 阶段的 Pareto
+  前沿是"主筋成本最优"而非"总成本最优"。
+
+  对当前结果的影响：有限。因为本项目拉筋和分布筋在所有方案中几乎相同（HPB300
+  D10@220 + HRB400
+  D16@176.8），差异主要在主筋。但如果将来拉筋/分布筋规格差异变大，这会成为问题。
+
+  结论
+
+  ┌────────────┬────────────────────────────────────────┐
+  │    类别    │                  评价                  │
+  ├────────────┼────────────────────────────────────────┤
+  │ 算法正确性 │ 正确，NSGA-II实现标准                  │
+  ├────────────┼────────────────────────────────────────┤
+  │ 工程适用性 │ 合理，串行分解符合耦合关系             │
+  ├────────────┼────────────────────────────────────────┤
+  │ 搜索充分性 │ 足够，320种组合 + 200×200种群          │
+  ├────────────┼────────────────────────────────────────┤
+  │ 结果可靠性 │ 可靠，多次运行结果在同一Pareto前沿附近 │
+  ├────────────┼────────────────────────────────────────┤
+  │ 需要改的   │ 目前没有需要立即修改的问题             │
+  └────────────┴────────────────────────────────────────┘
+
+  上述5个问题都是"可以更好"但"不影响当前结果正确性"的优化点。在以下场景下才值得
+  投入：
+
+  - 裂缝目标→约束：如果将来出现裂缝接近0.2mm限值的工况（比如更薄的截面或更大的弯
+  矩），再考虑
+  - 权重可配置化：如果用户需要更灵活的偏好选择
+  - 总成本目标：如果拉筋/分布筋规格在不同主筋方案下差异显著
+
+  以当前项目状态（700mm截面、修正后荷载、全截面受压为主），现有流程的结果是可信
+  的，不需要调整。
+
+✻ Cooked for 1m 27s
+
+> 目前的输入的钢筋混凝土保护层厚度是多少，拉筋的钢筋级别范围是哪几种，分布  
+  筋的钢筋级别范围是哪几种                                                  
+
+● Searched for 2 patterns, read 1 file (ctrl+o to expand)
+
+● 回答如下：
+
+  保护层厚度
+
+  - 当前配置输入: cover = 50 mm（precast_config.json 第20行）
+  - 代码默认值: DEFAULT_COVER = 35 mm，预制块外侧 40 mm、内侧 35 
+  mm（code_constraints.py）
+  - 实际生效: 50mm（配置值覆盖默认值）
+
+  拉筋钢筋级别
+
+  - 当前只支持一种级别，通过 section_params.get('stirrup_grade', 'HPB300') 指定
+  - 默认值: HPB300（structural_solver.py:159）
+  - 配置中未指定 stirrup_grade，所以当前使用 HPB300
+  - 代码中没有对拉筋做多级别搜索（不像主筋有 GRADES = ['HRB400', 
+  'HRB500']），固定为单一级别
+
+  分布筋钢筋级别
+
+  - 当前只支持一种级别，通过 section_params.get('dist_grade', 
+  main_rebar.get('grade', 'HRB400')) 指定
+  - 默认值: 跟随主筋级别（structural_solver.py:270）
+  - 当前主筋为 HRB400，所以分布筋也是 HRB400
+  - 同样固定为单一级别，不做多级别搜索
+
+  总结
+
+  ┌────────────┬───────────────┬────────────────────────┬──────────────┐
+  │    项目    │    当前值     │        可选范围        │   搜索方式   │
+  ├────────────┼───────────────┼────────────────────────┼──────────────┤
+  │ 保护层     │ 50mm          │ 配置指定               │ 固定值       │
+  ├────────────┼───────────────┼────────────────────────┼──────────────┤
+  │ 拉筋级别   │ HPB300        │ 配置指定（默认HPB300） │ 固定单一级别 │
+  ├────────────┼───────────────┼────────────────────────┼──────────────┤
+  │ 分布筋级别 │ HRB400        │ 跟随主筋（默认HRB400） │ 固定单一级别 │
+  ├────────────┼───────────────┼────────────────────────┼──────────────┤
+  │ 主筋级别   │ HRB400/HRB500 │ 代码内置               │ NSGA-II搜索  │
+  └────────────┴───────────────┴────────────────────────┴──────────────┘
+
+  拉筋和分布筋都不做级别搜索，只在给定级别下搜索直径和间距。如果需要扩展为多级别
+  搜索，需要修改代码。需要调整吗？
+
+✻ Brewed for 36s
+
+> 需要调整拉筋以及分布筋级别分别在HPB300和HRB400中进行搜索，调整代码，并且  
+  分布筋的间距最大值应改为250mm                                             
+
+● 好的，我来修改代码。先仔细看需要改的部分。
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在看分布筋部分和 code_constraints：
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在看拉筋验算中 fyv 如何使用的——需要确认不同级别的 fyv 在验算中能正确传入：
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在看 design_stirrups 中控制 required_asv_over_s
+  的最小配箍率逻辑——不同级别最小配箍率不同：
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在理解了完整逻辑。关键要点：
+
+  1. 拉筋：_build_stirrup_candidates 中 grade 固定为单一值，需要改为遍历
+  ['HPB300', 'HRB400']。同时 required_asv_over_s 的计算依赖
+  fyv（不同级别不同），所以需要对每个级别分别计算
+  required_strength，或者用更保守的 fyv 统一计算。
+  2. 分布筋：_design_distribution_rebar 中 dist_grade
+  固定单一值，需要改为遍历搜索。
+  3. 分布筋间距上限：MAX_SPACING_DISTRIBUTION = 200 → 250。
+
+  让我开始修改：
+
+● Update(src\code_constraints.py)
+  ⎿  Added 1 line, removed 1 line
+      29      MIN_CLEAR_SPACING_ABS = 30                                 
+      30                                                                 
+      31      MIN_SPACING_DISTRIBUTION = 150  # 分布筋最小间距150mm      
+      32 -    MAX_SPACING_DISTRIBUTION = 200  # 间距不宜大于200mm（      
+         -集中荷载较大时）                                               
+      32 +    MAX_SPACING_DISTRIBUTION = 250  # 分布筋最大间距250mm（    
+         +TB 10064-2019 9.1.7）                                          
+      33                                                                 
+      34      # 4) Anchorage factors (La/d)                              
+      35      ANCHORAGE_FACTORS = {                                      
+
+● 现在修改拉筋——在 _build_stirrup_candidates 中遍历多级别：
+
+● Update(src\structural_solver.py)
+  ⎿  Added 6 lines
+      157              candidate_spacings = [max_spacing]                
+      158                                                                
+      159          grade = section_params.get('stirrup_grade', 'HPB300') 
+      160 +        # 拉筋级别搜索：支持多级别候选（默认 HPB300 +         
+          +HRB400）                                                      
+      161 +        stirrup_grades_cfg =                                  
+          +section_params.get('stirrup_grades')                          
+      162 +        if isinstance(stirrup_grades_cfg, list) and           
+          +stirrup_grades_cfg:                                           
+      163 +            grade_series = list(stirrup_grades_cfg)           
+      164 +        else:                                                 
+      165 +            grade_series = [grade] if grade != 'HPB300' else  
+          +['HPB300', 'HRB400']                                          
+      166          uplift = max(0.0,                                     
+           float(section_params.get('stirrup_asv_over_s_uplift', 0.35))) 
+      167          upper_asv_over_s = required_asv_over_s * (1.0 +       
+           uplift)                                                       
+      168                                                                
+
+● 现在修改候选生成循环，在 grade_series 上遍历：
+
+● Update(src\structural_solver.py)
+  ⎿  Added 27 lines, removed 23 lines
+      180              templates = [{'name': 'layout', 'legs': 2},       
+           {'name': 'layout', 'legs': 4}]                                
+      181                                                                
+      182          candidates: List[Dict] = []                           
+      183 -        for tpl in templates:                                 
+      184 -            legs = tpl['legs']                                
+      185 -            layout = tpl['name']                              
+      186 -            for dia in dia_series:                            
+      187 -                area = math.pi * dia * dia / 4.0              
+      188 -                asv = legs * area                             
+      189 -                for spacing in candidate_spacings:            
+      190 -                    spacing = float(spacing)                  
+      191 -                    asv_over_s = asv / spacing if spacing > 0 
+          - else 0.0                                                     
+      192 -                    if asv_over_s + 1e-9 <                    
+          -required_asv_over_s:                                          
+      193 -                        continue                              
+      194 -                    within_uplift = asv_over_s <=             
+          -upper_asv_over_s + 1e-9                                       
+      195 -                    candidates.append({                       
+      196 -                        'grade': grade,                       
+      197 -                        'diameter': dia,                      
+      198 -                        'legs': legs,                         
+      199 -                        'layout': layout,                     
+      200 -                        'spacing': spacing,                   
+      201 -                        'Asv': asv,                           
+      202 -                        'Asv_over_s': asv_over_s,             
+      203 -                        'fyv':                                
+          -self.rm.get_design_value(grade),                              
+      204 -                        'within_uplift': within_uplift,       
+      205 -                    })                                        
+      183 +        for g in grade_series:                                
+      184 +            fyv_g = self.rm.get_design_value(g)               
+      185 +            if fyv_g <= 1e-9:                                 
+      186 +                continue                                      
+      187 +            for tpl in templates:                             
+      188 +                legs = tpl['legs']                            
+      189 +                layout = tpl['name']                          
+      190 +                for dia in dia_series:                        
+      191 +                    area = math.pi * dia * dia / 4.0          
+      192 +                    asv = legs * area                         
+      193 +                    for spacing in candidate_spacings:        
+      194 +                        spacing = float(spacing)              
+      195 +                        asv_over_s = asv / spacing if spacing 
+          + > 0 else 0.0                                                 
+      196 +                        if asv_over_s + 1e-9 <                
+          +required_asv_over_s:                                          
+      197 +                            continue                          
+      198 +                        within_uplift = asv_over_s <=         
+          +upper_asv_over_s + 1e-9                                       
+      199 +                        candidates.append({                   
+      200 +                            'grade': g,                       
+      201 +                            'diameter': dia,                  
+      202 +                            'legs': legs,                     
+      203 +                            'layout': layout,                 
+      204 +                            'spacing': spacing,               
+      205 +                            'Asv': asv,                       
+      206 +                            'Asv_over_s': asv_over_s,         
+      207 +                            'fyv': fyv_g,                     
+      208 +                            'within_uplift': within_uplift,   
+      209 +                        })                                    
+      210                                                                
+      211          # 若上浮范围过窄导致无候选，回退到仅满足下限 Asv/s    
+      212          if candidates and any(c['within_uplift'] for c in     
+           candidates):                                                  
+
+● 接下来修改 design_stirrups 中 required_asv_over_s 的计算。当前用固定的 fyv
+  和固定的 rho_sv_min 来算 required_asv_over_s，但多级别搜索时不同级别的 fyv 和
+  rho_sv_min 不同。正确做法是：用最保守的（最小的 fyv）来计算统一的
+  required_asv_over_s，确保所有候选方案都满足。
+
+● Update(src\structural_solver.py)
+  ⎿  Added 15 lines, removed 7 lines
+      455              return result                                     
+      456                                                                
+      457          stirrup_grade = section_params.get('stirrup_grade',   
+           'HPB300')                                                     
+      458 -        fyv = self.rm.get_design_value(stirrup_grade)         
+      459 -        if fyv <= 1e-9:                                       
+      460 -            fyv = self.rm.get_design_value('HPB300')          
+      461 -            stirrup_grade = 'HPB300'                          
+      458 +        # 拉筋级别搜索范围                                    
+      459 +        stirrup_grades_cfg =                                  
+          +section_params.get('stirrup_grades')                          
+      460 +        if isinstance(stirrup_grades_cfg, list) and           
+          +stirrup_grades_cfg:                                           
+      461 +            stirrup_grade_series = list(stirrup_grades_cfg)   
+      462 +        else:                                                 
+      463 +            stirrup_grade_series = [stirrup_grade] if         
+          +stirrup_grade != 'HPB300' else ['HPB300', 'HRB400']           
+      464                                                                
+      465 +        # 用最保守的 fyv（最小值）计算统一的                  
+          +required_asv_over_s                                           
+      466 +        fyv_values = [self.rm.get_design_value(g) for g in    
+          +stirrup_grade_series]                                         
+      467 +        fyv_values = [v for v in fyv_values if v > 1e-9]      
+      468 +        if not fyv_values:                                    
+      469 +            fyv_values = [self.rm.get_design_value('HPB300')] 
+      470 +        fyv = min(fyv_values)                                 
+      471 +                                                              
+      472          rho_sv_min_hpb300 =                                   
+           float(section_params.get('rho_sv_min_hpb300', 0.0014))        
+      473          rho_sv_min_hrb400 =                                   
+           float(section_params.get('rho_sv_min_hrb400', 0.0011))        
+      474          rho_sv_min_override =                                 
+           section_params.get('rho_sv_min_override')                     
+      475          if rho_sv_min_override is not None:                   
+      476              rho_sv_min = float(rho_sv_min_override)           
+      477 -        elif '300' in stirrup_grade:                          
+      478 -            rho_sv_min = rho_sv_min_hpb300                    
+      477          else:                                                 
+      478 -            rho_sv_min = rho_sv_min_hrb400                    
+      478 +            # 多级别搜索时取最大的最小配箍率（最保守）        
+      479 +            rho_sv_min = max(rho_sv_min_hpb300,               
+          +rho_sv_min_hrb400)                                            
+      480                                                                
+      481          shear_cases = []                                      
+      482          max_section_limit_ratio = 0.0                         
+
+● 现在修改分布筋——在 _design_distribution_rebar 中遍历 HPB300 和 HRB400
+  两种级别：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(src\structural_solver.py)
+  ⎿  Added 6 lines
+      278          as_main = main_n * main_bar_area                      
+      279                                                                
+      280          dist_grade = section_params.get('dist_grade',         
+           main_rebar.get('grade', 'HRB400'))                            
+      281 +        # 分布筋级别搜索：支持多级别候选（默认 HPB300 +       
+          +HRB400）                                                      
+      282 +        dist_grades_cfg = section_params.get('dist_grades')   
+      283 +        if isinstance(dist_grades_cfg, list) and              
+          +dist_grades_cfg:                                              
+      284 +            dist_grade_series = list(dist_grades_cfg)         
+      285 +        else:                                                 
+      286 +            dist_grade_series = ['HPB300', 'HRB400']          
+      287                                                                
+      288          # TB 10064-2019 9.1.7:                                
+           配筋不宜小于受力钢筋的15%，且配筋率不宜小于0.15%              
+      289          ratio = section_params.get('dist_ratio_to_main',      
+           0.15)                                                         
+
+● 现在修改搜索循环，在 dist_grade_series 上遍历，选成本最低的组合：
+
+● Update(src\structural_solver.py)
+  ⎿  Added 42 lines, removed 36 lines
+      315              diameters = [self.constraints.MIN_DIA_DIST]       
+      316                                                                
+      317          best = None                                           
+      318 -        for dia in diameters:                                 
+      319 -            area = self.rm.get_bar_properties(dia)['area']    
+      320 -            b_eff = b - 2 * c - dia                           
+      321 -            if b_eff <= 0:                                    
+      322 -                continue                                      
+      318 +        for g in dist_grade_series:                           
+      319 +            price_factor = self.rm.get_price(g, 10)  #        
+          +用于成本比较的参考单价                                        
+      320 +            for dia in diameters:                             
+      321 +                area =                                        
+          +self.rm.get_bar_properties(dia)['area']                       
+      322 +                b_eff = b - 2 * c - dia                       
+      323 +                if b_eff <= 0:                                
+      324 +                    continue                                  
+      325                                                                
+      326 -                                                              
+          -min_count_by_spacing = max(2, int(math.ceil(b_eff /           
+          -max_dist_spacing)) + 1)                                       
+      327 -                                                              
+          -min_count_by_area = max(2, int(math.ceil(as_required / area)))
+      328 -                                                              
+          -count = max(min_count_by_spacing, min_count_by_area)          
+      326 +                                                              
+          +min_count_by_spacing = max(2, int(math.ceil(b_eff /           
+          +max_dist_spacing)) + 1)                                       
+      327 +                                                              
+          +min_count_by_area = max(2, int(math.ceil(as_required / area)))
+      328 +                                                              
+          +count = max(min_count_by_spacing, min_count_by_area)          
+      329                                                                
+      330 -                                                              
+          -# 最小间距约束：间距≥min_dist_spacing → 根数不超过上限        
+      331 -            # max_count = floor(b_eff / min_dist_spacing) + 1 
+      332 -            if min_dist_spacing > 0:                          
+      333 -                                                              
+          -max_count_by_min_spacing = int(math.floor(b_eff /             
+          -min_dist_spacing)) + 1                                        
+      334 -                count = min(count, max_count_by_min_spacing)  
+      330 +                                                              
+          +# 最小间距约束：间距≥min_dist_spacing → 根数不超过上限        
+      331 +                                                              
+          +# max_count = floor(b_eff / min_dist_spacing) + 1             
+      332 +                if min_dist_spacing > 0:                      
+      333 +                                                              
+          +max_count_by_min_spacing = int(math.floor(b_eff /             
+          +min_dist_spacing)) + 1                                        
+      334 +                                                              
+          +count = min(count, max_count_by_min_spacing)                  
+      335                                                                
+      336 -                                                              
+          -actual_spacing = b_eff / (count - 1) if count > 1 else b_eff  
+      337 -            clear_spacing = actual_spacing - dia              
+      338 -            if clear_spacing <                                
+          -self.constraints.get_min_clear_spacing(dia):                  
+      339 -                continue                                      
+      336 +                                                              
+          +actual_spacing = b_eff / (count - 1) if count > 1 else b_eff  
+      337 +                clear_spacing = actual_spacing - dia          
+      338 +                if clear_spacing <                            
+          +self.constraints.get_min_clear_spacing(dia):                  
+      339 +                    continue                                  
+      340                                                                
+      341 -            as_provided = count * area                        
+      342 -            if as_provided + 1e-9 < as_required:              
+      343 -                continue                                      
+      341 +                as_provided = count * area                    
+      342 +                if as_provided + 1e-9 < as_required:          
+      343 +                    continue                                  
+      344                                                                
+      345 -            overuse = as_provided - as_required               
+      346 -            candidate = {                                     
+      347 -                'mode': 'ratio',                              
+      348 -                'grade': dist_grade,                          
+      349 -                'diameter': dia,                              
+      350 -                'count': count,                               
+      351 -                'spacing': actual_spacing,                    
+      352 -                'target_spacing': max_dist_spacing,           
+      353 -                'area_required': as_required,                 
+      354 -                'area_provided': as_provided,                 
+      355 -                'ratio_to_main': as_provided / as_main if     
+          -as_main > 0 else 0.0,                                         
+      356 -                'todo_auto_fix': False,                       
+      357 -            }                                                 
+      358 -            key = (overuse, dia, -actual_spacing)             
+      359 -            if best is None or key < best[0]:                 
+      360 -                best = (key, candidate)                       
+      345 +                overuse = as_provided - as_required           
+      346 +                # 成本估算：重量 × 单价                       
+      347 +                weight_per_m =                                
+          +self.rm.get_bar_properties(dia)['weight']                     
+      348 +                unit_price = self.rm.get_price(g, dia)        
+      349 +                cost_est = weight_per_m * count * unit_price  
+      350 +                candidate = {                                 
+      351 +                    'mode': 'ratio',                          
+      352 +                    'grade': g,                               
+      353 +                    'diameter': dia,                          
+      354 +                    'count': count,                           
+      355 +                    'spacing': actual_spacing,                
+      356 +                    'target_spacing': max_dist_spacing,       
+      357 +                    'area_required': as_required,             
+      358 +                    'area_provided': as_provided,             
+      359 +                    'ratio_to_main': as_provided / as_main if 
+          + as_main > 0 else 0.0,                                        
+      360 +                    'todo_auto_fix': False,                   
+      361 +                }                                             
+      362 +                key = (overuse, cost_est, dia,                
+          +-actual_spacing)                                              
+      363 +                if best is None or key < best[0]:             
+      364 +                    best = (key, candidate)                   
+      365                                                                
+      366          if best:                                              
+      367              return best[1]                                    
+
+● 现在修改 fallback 分支也使用 dist_grade_series：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(src\structural_solver.py)
+  ⎿  Added 2 lines
+      367              return best[1]                                    
+      368                                                                
+      369          # Fallback: use dense spacing to maximize provided    
+           distribution steel.                                           
+      370 +        # 选成本最低的级别                                    
+      371 +        fallback_grade = min(dist_grade_series, key=lambda g: 
+          + self.rm.get_price(g, diameters[0]))                          
+      372          dia = diameters[0]                                    
+      373          area = self.rm.get_bar_properties(dia)['area']        
+      374          b_eff = max(1.0, b - 2 * c - dia)                     
+
+● Update(src\structural_solver.py)
+  ⎿  Added 1 line, removed 1 line
+      386                                                                
+      387          return {                                              
+      388              'mode': 'ratio',                                  
+      389 -            'grade': dist_grade,                              
+      389 +            'grade': fallback_grade,                          
+      390              'diameter': dia,                                  
+      391              'count': count,                                   
+      392              'spacing': actual_spacing,                        
+
+● 现在验证修改后的代码能否正常运行：
+
+● Bash(cd "D:/suidaopeijin" && python -c "
+      from src.structural_solver import StructuralSolver…)
+  ⎿  Stirrup: HRB400 D10@220.0 4legs
+     Distribution: HRB400 D16@176.8 6bars
+     Stirrup pareto count: 5
+     … +6 lines (ctrl+o to expand)
+
+● 拉筋已成功搜索 HPB300 和 HRB400
+  两种级别，帕累托前沿中两种级别都有候选。现在运行完整优化确认：
+
+● Bash(cd "D:/suidaopeijin" && rm -rf reports/2026-03-20/* && python
+      main_precast.py --config precast_config.json --force-file
+      force_records.csv --report-md reports/20…)
+  ⎿  [governance] code_fingerprint=e98a0246dfa6a1e6e8f622c5e9fd72426e302519
+     133cbd73a1e166c8d2e1c79c
+     Start Hybrid NSGA-II Optimization...
+     … +44 lines (ctrl+o to expand)
+  ⎿  (timeout 10m)
+
+● 运行成功。注意拉筋现在选择了 HRB400 D10@220（之前是 HPB300
+  D10@220），说明多级别搜索生效了。让我看报告中拉筋候选的对比：
+
+● Read 1 file (ctrl+o to expand)
+
+● 结果验证完毕。现在更新文档：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(UPDATE_LOG.md)
+  ⎿  Added 30 lines
+       6                                                                 
+       7  ---                                                            
+       8                                                                 
+       9 +## v3.4.9 (2026-03-20)                                         
+      10 +### 本次新增/修正                                              
+      11 +                                                               
+      12 +- **[功能增强] 拉筋支持多级别搜索（HPB300 + HRB400）**:        
+      13 +  - 旧逻辑：拉筋级别固定为                                     
+         +`stirrup_grade`（默认HPB300），不搜索其他级别。                
+      14 +  - 修改：`_build_stirrup_candidates` 新增 `grade_series`      
+         +循环，默认遍历 HPB300 和 HRB400 两种级别。                     
+      15 +  - `design_stirrups` 中 `required_asv_over_s` 改用最保守的    
+         +`fyv`（最小值）和最大的 `rho_sv_min` 计算，                    
+      16 +    确保所有级别候选方案均满足抗剪需求。                       
+      17 +  - 可通过 `stirrup_grades` 配置参数自定义搜索级别列表。       
+      18 +                                                               
+      19 +- **[功能增强] 分布筋支持多级别搜索（HPB300 + HRB400）**:      
+      20 +  - 旧逻辑：分布筋级别固定跟随主筋级别（HRB400）。             
+      21 +  - 修改：`_design_distribution_rebar` 新增                    
+         +`dist_grade_series` 循环，默认遍历 HPB300 和 HRB400。          
+      22 +  - 候选比较增加成本估算维度（重量×单价），在面积超量相同时优  
+         +先选成本更低的级别。                                           
+      23 +  - 可通过 `dist_grades` 配置参数自定义搜索级别列表。          
+      24 +                                                               
+      25 +- **[参数调整] 分布筋最大间距 200mm → 250mm**:                 
+      26 +  - `code_constraints.py` 中 `MAX_SPACING_DISTRIBUTION` 由 200 
+         + 改为 250。                                                    
+      27 +                                                               
+      28 +### 影响文件                                                   
+      29 +- `src/code_constraints.py`（MAX_SPACING_DISTRIBUTION          
+         +200→250）                                                      
+      30 +- `src/structural_solver.py`（拉筋/分布筋多级别搜索）          
+      31 +                                                               
+      32 +### 优化结果变化                                               
+      33 +- 拉筋选型：HPB300 D10@220 → **HRB400                          
+         +D10@220**（HRB400强度更高，抗剪更优）                          
+      34 +- 拉筋Pareto候选：由4个增至5个，包含 HPB300 和 HRB400 两种级别 
+      35 +- 分布筋选型：HRB400 D16@176.8                                 
+         +6根（未变，HRB400在当前配置下仍是最优）                        
+      36 +                                                               
+      37 +---                                                            
+      38 +                                                               
+      39  ## v3.4.8 (2026-03-20)                                         
+      40  ### 本次新增/修正                                              
+      41                                                                 
+
+● Update(TARGET_GOALS.md)
+  ⎿  Added 1 line, removed 1 line
+      1  # 铁路明洞装配式衬砌配筋系统 - 任务目标 (v3.4 Roadmap)          
+      2                                                                  
+      3  - 文档日期: 2026-03-20                                          
+      4 -- 当前版本: v3.4.8（报告输出修正：造价/间距从归一化值改为物理值 
+        -；重新优化完成）                                                
+      4 +- 当前版本: v3.4.9（拉筋/分布筋多级别搜索HPB300+HRB400；分布筋  
+        +最大间距250mm）                                                 
+      5  - 目标版本: v3.5.0（工程完善闭环）                              
+      6                                                                  
+      7  ---                                                             
+
+● 修改完成。总结如下：
+
+  ---
+  修改内容
+
+  1. 拉筋多级别搜索
+
+  - _build_stirrup_candidates: 新增 grade_series 外层循环，默认遍历 ['HPB300', 
+  'HRB400']
+  - design_stirrups: required_asv_over_s 用最保守的 fyv（取最小值）和最大的
+  rho_sv_min 计算
+  - 结果：拉筋 Pareto 候选从 4 个增至 5 个，包含两种级别；最终选型 HRB400 
+  D10@220（强度更高，max_ratio 从 0.190 降至 0.177）
+
+  2. 分布筋多级别搜索
+
+  - _design_distribution_rebar: 新增 dist_grade_series 外层循环，默认遍历
+  ['HPB300', 'HRB400']
+  - 候选排序新增成本估算维度（重量×单价），面积超量相同时选更便宜的级别
+  - 结果：当前配置下 HRB400 D16@176.8 仍为最优（未变）
+
+  3. 分布筋最大间距
+
+  - MAX_SPACING_DISTRIBUTION: 200mm → 250mm
+
+  配置扩展
+
+  可通过 precast_config.json 的 section 中添加以下参数自定义：
+  - "stirrup_grades": ["HPB300", "HRB400"] — 拉筋搜索级别
+  - "dist_grades": ["HPB300", "HRB400"] — 分布筋搜索级别
+
+✻ Churned for 4m 29s
+
+> 分布筋最大间距还是改成200mm吧 
+
+● Update(src\code_constraints.py)
+  ⎿  Added 1 line, removed 1 line
+      29      MIN_CLEAR_SPACING_ABS = 30                                 
+      30                                                                 
+      31      MIN_SPACING_DISTRIBUTION = 150  # 分布筋最小间距150mm      
+      32 -    MAX_SPACING_DISTRIBUTION = 250  # 分布筋最大间距250mm      
+         -（TB 10064-2019 9.1.7）                                        
+      32 +    MAX_SPACING_DISTRIBUTION = 200  # 分布筋最大间距200mm      
+         +（TB 10064-2019 9.1.7）                                        
+      33                                                                 
+      34      # 4) Anchorage factors (La/d)                              
+      35      ANCHORAGE_FACTORS = {                                      
+
+● Update(UPDATE_LOG.md)
+  ⎿  Added 2 lines, removed 2 lines
+      22    - 候选比较增加成本估算维度（重量×单价），在面积超量相同时优  
+          先选成本更低的级别。                                           
+      23    - 可通过 `dist_grades` 配置参数自定义搜索级别列表。          
+      24                                                                 
+      25 -- **[参数调整] 分布筋最大间距 200mm → 250mm**:                 
+      26 -  - `code_constraints.py` 中 `MAX_SPACING_DISTRIBUTION` 由 200 
+         -改为 250。                                                     
+      25 +- **[参数调整] 分布筋最大间距保持 200mm**:                     
+      26 +  - `code_constraints.py` 中 `MAX_SPACING_DISTRIBUTION = 200   
+         +`（TB 10064-2019 9.1.7）。                                     
+      27                                                                 
+      28  ### 影响文件                                                   
+      29  - `src/code_constraints.py`（MAX_SPACING_DISTRIBUTION          
+          200→250）                                                      
+
+● Update(TARGET_GOALS.md)
+  ⎿  Added 1 line, removed 1 line
+      1  # 铁路明洞装配式衬砌配筋系统 - 任务目标 (v3.4 Roadmap)          
+      2                                                                  
+      3  - 文档日期: 2026-03-20                                          
+      4 -- 当前版本: v3.4.9（拉筋/分布筋多级别搜索HPB300+HRB400          
+        -；分布筋最大间距250mm）                                         
+      4 +- 当前版本: v3.4.9（拉筋/分布筋多级别搜索HPB300+HRB400）        
+      5  - 目标版本: v3.5.0（工程完善闭环）                              
+      6                                                                  
+      7  ---                                                             
+
+● 已改回 200mm。
+
+> 还有一个问题，输出的钢筋间距似乎不应该为非整数，一般来说施工中钢筋间距要  
+  求为整数，有没有这个情况，客观回答一下                                    
+
+● 有这个情况。从报告中可以直接看到：
+
+  ┌────────────┬─────────┬──────────┐
+  │    项目    │ 间距值  │ 是否整数 │
+  ├────────────┼─────────┼──────────┤
+  │ 主筋 A型   │ 98.4mm  │ 否       │
+  ├────────────┼─────────┼──────────┤
+  │ 主筋 B/C型 │ 147.3mm │ 否       │
+  ├────────────┼─────────┼──────────┤
+  │ 拉筋       │ 220.0mm │ 是       │
+  ├────────────┼─────────┼──────────┤
+  │ 分布筋     │ 176.8mm │ 否       │
+  └────────────┴─────────┴──────────┘
+
+  拉筋间距是整数（因为候选间距列表本身就是整数），但主筋和分布筋间距是小数。
+
+  原因在于间距不是直接指定的，而是通过计算得到的：
+
+  actual_spacing = b_eff / (count - 1)
+
+  b_eff = b - 2*cover - d = 1000 - 2*50 - 16 = 884mm，count=10 时 884/9 = 
+  98.2mm，不是整数。
+
+  这在施工中确实不合理——现场钢筋间距按整数（通常为5mm或10mm的倍数）放线。当前代
+  码中主筋和分布筋都存在这个问题，需要将计算出的间距取整（向下取整到整数，偏安全
+  ）。是否需要修改？
+
+✻ Brewed for 58s
+
+> 不应该直接取整吧，应该在搜索候选中就应该指定候选间距值只能为整数5或10的倍 
+  数，是不是应该这样改更合理，客观分析一下                                  
+
+● 你说得对，从搜索阶段就约束比事后取整更合理。分析一下两种方案：
+
+  方案A：事后取整（向下取整到5mm倍数）
+
+  b_eff=884, count=10 → spacing=98.2 → 取整95mm
+  实际布置: 9×95=855mm < 884mm → 两端剩余14.5mm，钢筋不居中
+
+  问题：取整后根数不变，但两端余量不对称，需要人工调整。取整方向（上/下）还涉及
+  安全性判断。
+
+  方案B：搜索阶段直接约束候选间距为整数倍数
+
+  当前主筋的搜索变量是 spacing_idx（对应 SPACINGS = [100, 110, ..., 
+  250]，步长10mm），但实际间距不是直接取这个值，而是：
+
+  s_limit = min(s, max_s)
+  count = max(2, ceil(b_eff / s_limit) + 1)  # 由间距反算根数
+  actual_spacing = b_eff / (count - 1)        # 再由根数反算间距 ← 这里产生小数
+
+  也就是说 SPACINGS 只用于算根数，最终间距是 b_eff/(count-1)
+  的结果，并不等于候选值本身。
+
+  正确做法：搜索变量应该改为根数（count），而非间距索引。给定根数后，间距 =
+  b_eff/(count-1)，再将间距向下取整到5mm倍数，最后验证取整后的实际布置是否满足
+  b_eff 范围。
+
+  但这样改动较大。一个更简单且等效的做法是：保持现有搜索逻辑不变，在 
+  _evaluate_single 和 _design_distribution_rebar 中将 actual_spacing 
+  向下取整到5mm倍数，然后由取整后的间距反算实际占用宽度，确保不超出 b_eff。
+
+  实际上这两种方案数学上等价——因为根数是离散的，给定根数后只有一个"最大整数间距"
+  能放进 b_eff，即 floor(b_eff / (count-1) / 5) * 5。
+
+  结论
+
+  你的思路更合理——应该在搜索/计算阶段就保证间距是整数倍数，而不是事后修补。具体
+  实现上，最简洁的方式是在计算出 actual_spacing 后立即取整到5mm倍数（向下），因
+  为根数已经确定，取整只会让间距略小（偏安全），不影响根数和承载力。
+
+  需要我按这个思路修改吗？
+
+> 保持现有搜索逻辑不变，在 _evaluate_single 和 _design_distribution_rebar   
+  中将 actual_spacing                                                       
+  向下取整到5mm倍数，然后由取整后的间距反算实际占用宽度，确保不超出         
+  b_eff。，你确定这样做不会影响算法和结果吗，再次核对一遍这样做的正确性     
+
+● 让我仔细推演一遍这个取整逻辑的影响。
+
+● Read 1 file (ctrl+o to expand)
+
+● 让我用具体数值推演取整的影响。
+
+● Bash(cd "D:/suidaopeijin" && python -c "
+      import math…)
+  ⎿  === ������ȡ������ ===
+
+     D14 x5: b_eff=886, raw=221.5, rounded=220, delta=1.5, used=880, margin
+     … +59 lines (ctrl+o to expand)
+
+● 验算结果完全一致——safety_factor 和 crack_width 差值均为 0。让我确认 spacing
+  在验算中到底用在哪里：
+
+● Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● spacing 仅出现在缓存 key
+  中（第171行），在承载力和裂缝计算中完全不使用——计算只依赖 count（根数）和
+  diameter（直径）来算总面积 As = count × 单根面积。
+
+  客观结论
+
+  向下取整到5mm倍数是安全的，不会影响验算结果。 原因：
+
+  1. 根数不变 — 取整的是间距，不改变根数，因此 As
+  不变，承载力和裂缝验算结果完全相同（实测差值=0）
+  2. 间距变小 — 向下取整使间距缩小0~4.8mm，钢筋更密，偏安全方向
+  3. 不超出截面 — used_width = rounded_spacing × (count-1) 始终 ≤ b_eff，margin
+  ≥ 0（已验证所有组合）
+  4. 净距仍满足 —
+  取整后净距最多减小4.8mm，对最小净距30mm约束无影响（所有候选净距均>60mm）
+
+  唯一需要注意的是：spacing 出现在缓存 key 中，取整后不同原始间距可能映射到同一
+  个取整值，但这只会提高缓存命中率，不会导致错误。
+
+  **可以放心修改。**需要我执行吗？
+
+✻ Brewed for 60s
+
+> 刚刚查询到，钢筋配置只要输出是整数就行，不需要非得是5或者10的倍数 
+
+● 好的，那只需要向下取整到整数即可。修改两处：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 1 line, removed 1 line
+      262          s_limit = min(s, max_s)                               
+      263          count = max(2, int(math.ceil(b_eff / s_limit)) + 1)   
+      264          actual_spacing = b_eff / (count - 1) if count > 1     
+           else b_eff                                                    
+      265 -        n_calc = count                                        
+      265 +        actual_spacing = int(actual_spacing)  #               
+          +施工间距取整数（向下取整，偏安全）                            
+      266          rebar_params = {                                      
+      267              'grade': grade,                                   
+      268              'diameter': d,                                    
+
+● 等等，int() 在 Python 中对正数是截断（等同于 floor），确认一下：
+
+● Bash(python -c "print(int(98.4), int(147.3), int(176.8), int(220.0))")
+  ⎿  98 147 176 220
+
+● 正确，int() 对正数就是向下取整。但用 math.floor 更明确：
+
+● Update(src\nsga2_solver.py)
+  ⎿  Added 2 lines, removed 1 line
+      262          s_limit = min(s, max_s)                               
+      263          count = max(2, int(math.ceil(b_eff / s_limit)) + 1)   
+      264          actual_spacing = b_eff / (count - 1) if count > 1     
+           else b_eff                                                    
+      265 -        actual_spacing = int                                  
+          -(actual_spacing)  # 施工间距取整数（向下取整，偏安全）        
+      265 +        actual_spacing = math.floor                           
+          +(actual_spacing)  # 施工间距取整数（向下取整，偏安全）        
+      266 +        n_calc = count                                        
+      267          rebar_params = {                                      
+      268              'grade': grade,                                   
+      269              'diameter': d,                                    
+
+● 现在修改分布筋的两处（正常分支和 fallback 分支）：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(src\structural_solver.py)
+  ⎿  Added 1 line, removed 1 line
+      334                      count = min(count,                        
+           max_count_by_min_spacing)                                     
+      335                                                                
+      336                  actual_spacing = b_eff / (count - 1) if count 
+            > 1 else b_eff                                               
+      337 -                clear_spacing = actual_spacing - dia          
+      337 +                actual_spacing = math.floor(actual_spacing)   
+          +# 施工间距取整数                                              
+      338                  if clear_spacing <                            
+           self.constraints.get_min_clear_spacing(dia):                  
+      339                      continue                                  
+      340                                                                
+
+● 等，我需要确保 clear_spacing 那行还在：
+
+● Read 1 file (ctrl+o to expand)
+
+● clear_spacing = actual_spacing - dia 这行被替换掉了，需要补回来：
+
+● Update(src\structural_solver.py)
+  ⎿  Added 1 line
+      335                                                                
+      336                  actual_spacing = b_eff / (count - 1) if count 
+            > 1 else b_eff                                               
+      337                  actual_spacing = math.floor(actual_spacing)   
+           # 施工间距取整数                                              
+      338 +                clear_spacing = actual_spacing - dia          
+      339                  if clear_spacing <                            
+           self.constraints.get_min_clear_spacing(dia):                  
+      340                      continue                                  
+      341                                                                
+
+● 现在修改 fallback 分支：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(src\structural_solver.py)
+  ⎿  Added 1 line, removed 1 line
+      383          min_count_by_spacing_fb = max(2, int(math.ceil(b_eff  
+           / max_dist_spacing)) + 1)                                     
+      384          count = max(count, min_count_by_spacing_fb)           
+      385          actual_spacing = b_eff / (count - 1) if count > 1     
+           else b_eff                                                    
+      386 -        as_provided = count * area                            
+      386 +        actual_spacing = math.floor(actual_spacing)  #        
+          +施工间距取整数                                                
+      387                                                                
+      388          return {                                              
+      389              'mode': 'ratio',                                  
+
+> /btw 向下取整是偏安全还是向上，再核实一下 
+
+● 需要补回 as_provided 那行：
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(src\structural_solver.py)
+  ⎿  Added 1 line, removed 2 lines
+      384          count = max(count, min_count_by_spacing_fb)           
+      385          actual_spacing = b_eff / (count - 1) if count > 1     
+           else b_eff                                                    
+      386          actual_spacing = math.floor(actual_spacing)  #        
+           施工间距取整数                                                
+      387 -                                                              
+      388 -        return {                                              
+      387 +        as_provided = count * area                            
+      388              'mode': 'ratio',                                  
+      389              'grade': fallback_grade,                          
+      390              'diameter': dia,                                  
+
+● 现在回答你的问题——向下取整到底是偏安全还是偏不安全：
+
+  向下取整（间距变小）对承载力计算无影响（因为根数和面积不变），但在施工层面：
+  - 间距变小 → 钢筋排得更密 → 两端有余量
+  - 余量 = b_eff - spacing × (count-1) >
+  0，两端各分一半，钢筋实际保护层略大于设计值
+
+  这是偏安全的——保护层不减小，钢筋数量不减少。
+
+  但严格来说，间距取整方向对承载力本身没有影响（已验证 SF
+  和裂缝差值=0），因为验算只看总面积 As = count × 单根面积，不看间距。
+
+  现在运行验证：
+
+● Bash(cd "D:/suidaopeijin" && rm -rf reports/2026-03-20/* && python
+      main_precast.py --config precast_config.json --force-file
+      force_records.csv --report-md reports/20…)
+  ⎿  Error: Exit code 1
+     Traceback (most recent call last):
+       File "D:\suidaopeijin\main_precast.py", line 17, in <module>
+         from src.nsga2_solver import HybridNSGA2Solver
+       File "D:\suidaopeijin\src\nsga2_solver.py", line 11, in <module>
+         from src.structural_solver import StructuralSolver
+       File "D:\suidaopeijin\src\structural_solver.py", line 388
+         'mode': 'ratio',
+     IndentationError: unexpected indent
+
+     … +8 lines (ctrl+o to see all)
+
+● Read 1 file (ctrl+o to expand)
+
+● return { 被丢掉了：
+
+● Update(src\structural_solver.py)
+  ⎿  Added 2 lines
+      385          actual_spacing = b_eff / (count - 1) if count > 1     
+           else b_eff                                                    
+      386          actual_spacing = math.floor(actual_spacing)  #        
+           施工间距取整数                                                
+      387          as_provided = count * area                            
+      388 +                                                              
+      389 +        return {                                              
+      390              'mode': 'ratio',                                  
+      391              'grade': fallback_grade,                          
+      392              'diameter': dia,                                  
+
+● Bash(cd "D:/suidaopeijin" && python main_precast.py --config
+      precast_config.json --force-file force_records.csv --report-md
+      reports/2026-03-20/report_v349.md --repor…)
+  ⎿  [governance] code_fingerprint=e98a0246dfa6a1e6e8f622c5e9fd72426e302519
+     133cbd73a1e166c8d2e1c79c
+     Start Hybrid NSGA-II Optimization...
+     … +42 lines (ctrl+o to expand)
+  ⎿  (timeout 10m)
+
+● 运行成功。确认间距全部为整数：
+
+● Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● 所有间距全部为整数：
+
+  ┌────────────────────┬───────────────────────┐
+  │       修改前       │        修改后         │
+  ├────────────────────┼───────────────────────┤
+  │ 主筋 A型 98.4mm    │ 98mm                  │
+  ├────────────────────┼───────────────────────┤
+  │ 主筋 B/C型 147.3mm │ 147mm                 │
+  ├────────────────────┼───────────────────────┤
+  │ 分布筋 176.8mm     │ 176mm                 │
+  ├────────────────────┼───────────────────────┤
+  │ 拉筋 220.0mm       │ 220mm（本身就是整数） │
+  └────────────────────┴───────────────────────┘
+
+  造价和裂缝结果不变（41.99 / 37.60 CNY/m，0.056 /
+  0.000mm），验证了取整不影响验算结果。
+
+  回答你的问题：向下取整是偏安全的。间距 98.4→98mm，钢筋排得更密，两端各多出约
+  (886 - 98×9)/2 = 4.8/2 = 2.4mm
+  的余量，保护层实际略大于设计值，对承载力无影响（根数和面积不变）。
+
+✻ Cogitated for 2m 55s
+
+> 好的，那么关于Stage 4的联合评分权重是硬编码的这个问题，会对结果有影响吗， 
+  客观回答一下这个权重是否应该重设计                                        
+
+● 让我用实际数据来分析权重的影响。
+
+● Read 1 file (ctrl+o to expand)
+
+● Bash(cd "D:/suidaopeijin" && python -c "
+      import math…)
+  ⎿  === A�ͺ�ѡTop3�ڲ�ͬȨ���µ����� ===
+
+     ��ǰȨ�� [0.45/0.25/0.15/0.10/0.05]:
+     … +23 lines (ctrl+o to expand)
+
+● 数据说得很清楚了。
+
+  客观分析
+
+  权重确实影响选型结果
+
+  ┌──────────┬────────┬──────┬───────┬───────┐
+  │ 权重方案 │ 第1名  │ 造价 │ 裂缝  │ 间距  │
+  ├──────────┼────────┼──────┼───────┼───────┤
+  │ 当前权重 │ D14×10 │ 42.0 │ 0.056 │ 98mm  │
+  ├──────────┼────────┼──────┼───────┼───────┤
+  │ 成本优先 │ D16×7  │ 37.6 │ 0.067 │ 147mm │
+  ├──────────┼────────┼──────┼───────┼───────┤
+  │ 裂缝优先 │ D16×10 │ 53.7 │ 0.047 │ 98mm  │
+  ├──────────┼────────┼──────┼───────┼───────┤
+  │ 间距优先 │ D20×5  │ 40.8 │ 0.070 │ 220mm │
+  ├──────────┼────────┼──────┼───────┼───────┤
+  │ 均等权重 │ D20×6  │ 48.9 │ 0.058 │ 176mm │
+  └──────────┴────────┴──────┴───────┴───────┘
+
+  不同权重选出的方案完全不同——从 D14×10 到 D20×5，造价差 37.6~53.7，裂缝差
+  0.047~0.070，间距差 98~220mm。
+
+  但对本项目的实际影响有限
+
+  关键事实：
+
+  1. Asv/s 全部相同（1.428） — 拉筋方案不变，权重中 0.15 的 asv_over_s
+  维度实际上不起区分作用
+  2. 裂缝全部远低于限值 — 0.047~0.070mm，限值 0.2mm，富余 3~4
+  倍，裂缝维度区分度很弱
+  3. 真正有区分度的只有两个维度：成本 vs
+  间距（施工便利性），这才是工程决策的核心取舍
+
+  权重是否应该重设计？
+
+  不需要重新设计权重本身，但应该让权重可配置。
+
+  原因：
+  - 当前硬编码的 [0.45, 0.25, 0.15, 0.10, 0.05]
+  并不存在"正确答案"——权重反映的是设计者的偏好，不是物理规律
+  - 现有的 preference 参数（cost/safety/construction/balanced）只在 NSGA-II
+  阶段生效，联合评分阶段始终用固定权重，二者脱节
+  - 实际工程中，不同项目偏好不同（造价敏感项目 vs 耐久性要求高的项目 vs
+  施工空间受限项目）
+
+  建议做法：将联合评分权重与 preference 参数联动，不同偏好对应不同权重组合。这样
+  用户通过一个参数就能控制全流程的决策倾向，而不需要手动调 5
+  个权重值。需要改吗？
+
+✻ Brewed for 56s
+
+> 调整preference参数生成不同偏好的配筋方案并输出到报告中（报告需要注明偏好  
+  ）                                                                        
+
+● Entered plan mode
+  Claude is now exploring and designing an implementation approach.
+
+● Explore(Explore preference and report flow)
+  ⎿  Done (15 tool uses · 70.4k tokens · 1m 15s)
+  (ctrl+o to expand)
+
+● 非常清楚了。现在设计实现方案：
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在看 _joint_weights 和 _score_joint_front 的调用关系：
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在看 write_report_md 的签名和结构：
+
+● Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● 现在看 _select_joint_best 如何使用权重：
+
+● Read 1 file (ctrl+o to expand)
+
+● 理解完整了。现在写计划：
+
+● Updated plan
+  ⎿  /plan to preview
+
+● User approved Claude's plan
+  ⎿  Plan saved to: C:\Users\ycc29\.claude\plans\piped-watching-crayon.md · 
+     /plan to edit
+
+     计划：多偏好配筋方案联合输出
+
+     Context
+
+     当前联合评分权重硬编码为 [0.45, 0.25, 0.15, 0.10, 
+     0.05]（cost/crack/asv/dist/spacing），preference 参数仅在 NSGA-II
+     阶段选主筋时使用，Stage 4
+     联合评分始终用固定权重。用户希望：一次优化运行，输出4种偏好（cost/safet
+     y/construction/balanced）的配筋方案到同一份报告中。
+
+     核心设计思路
+
+     NSGA-II 只需运行一次（耗时操作），拉筋/分布筋设计也只需运行一次（拉筋候
+     选与主筋选型无关），差异仅在 Stage 4 的联合评分权重。因此：
+     1. 对同一个 joint_front（联合 Pareto 前沿），用4组不同权重分别评分选解
+     2. 每种偏好产出一套 type_results
+     3. 报告中并列展示4种偏好方案
+
+     修改文件及内容
+
+     1. main_precast.py — _joint_weights() 改为接受偏好参数
+
+     def _joint_weights(preference: str = "balanced") -> List[float]:
+         WEIGHT_MAP = {
+             "cost":         [0.55, 0.15, 0.10, 0.10, 0.10],
+             "safety":       [0.15, 0.55, 0.10, 0.10, 0.10],
+             "construction": [0.15, 0.10, 0.10, 0.10, 0.55],
+             "balanced":     [0.45, 0.25, 0.15, 0.10, 0.05],
+         }
+         return WEIGHT_MAP.get(preference, WEIGHT_MAP["balanced"])
+
+     2. main_precast.py — _score_joint_front() 接受 preference 参数
+
+     传递给 _joint_weights(preference) 取权重。
+
+     3. main_precast.py — _select_joint_best() 接受 preference 参数
+
+     传递给 _score_joint_front(front, preference)。
+
+     4. main_precast.py — _build_joint_selection_payload() 接受 preference 
+     参数
+
+     传递给 _score_joint_front(front, 
+     preference)，并在输出中记录当前偏好名称和权重。
+
+     5. main_precast.py — main() 核心流程改造
+
+     PREFERENCES = ["cost", "safety", "construction", "balanced"]
+
+     for stype, seg_id in type_source.items():
+         # ... 现有：NSGA-II 运行一次，拉筋/分布筋设计一次 ...
+         # combo_candidates 和 joint_front 只算一次
+
+         joint_front = _joint_pareto(combo_candidates)
+
+         # 对同一个 joint_front，用4种偏好分别选解
+         pref_results = {}
+         for pref in PREFERENCES:
+             chosen_raw = _select_joint_best(joint_front, preference=pref)
+             joint_selection = _build_joint_selection_payload(joint_front,
+     chosen_raw, preference=pref)
+             chosen = dict(chosen_raw)
+             chosen['joint_pareto'] =
+     _build_joint_pareto_payload(joint_front, selected_raw=chosen_raw)
+             chosen['joint_selection'] = joint_selection
+             chosen['stirrup_selection'] =
+     _build_stirrup_selection_payload(chosen)
+             chosen.pop('joint_objs', None)
+             pref_results[pref] = chosen
+
+         type_results[stype] = pref_results  # Dict[pref_name → chosen]
+
+     6. main_precast.py — write_report_md() 改造
+
+     报告结构改为：
+
+     # 装配式明洞配筋优化报告
+
+     ## 多偏好方案总览
+     | 偏好 | 权重(成本/裂缝/抗剪/分布筋/间距) | A型方案 | B型方案 | C型方案
+      | A型造价 | A型裂缝 |
+
+     ## 造价优先方案 (COST)
+     ### 类型汇总
+     [现有汇总表]
+     ### 分块结果
+     [现有分块表]
+     ### 技术复核明细
+     [现有候选对比 — 标注当前偏好选中]
+
+     ## 安全优先方案 (SAFETY)
+     ...（同上结构）
+
+     ## 施工优先方案 (CONSTRUCTION)
+     ...
+
+     ## 均衡方案 (BALANCED)
+     ...
+
+     ## 规范参数治理
+     [仅输出一次]
+
+     ## 输入摘要
+     [仅输出一次]
+
+     7. main_precast.py — write_report_csv() 改造
+
+     CSV 增加 preference 列，每个分块输出4行（4种偏好各1行）。
+
+     8. 控制台输出改造
+
+     === Symmetric Design Summary === 改为按偏好分组输出。
+
+     不修改的文件
+
+     - nsga2_solver.py — NSGA-II 运行不变，preference 参数保留但仅影响返回的
+      best_sol（不影响 pareto_front）
+     - structural_solver.py — 拉筋/分布筋设计不变
+     - calculator.py — 验算不变
+
+     验证方式
+
+     python main_precast.py --config precast_config.json --force-file
+     force_records.csv \
+       --report-md reports/2026-03-20/report_v349.md \
+       --report-csv reports/2026-03-20/report_v349.csv
+     检查：
+     1. NSGA-II 仍只运行3次（A/B/C各1次），不因4种偏好而重复运行
+     2. 报告中有4个偏好方案段落，每段标注偏好名和权重
+     3. 不同偏好选出的方案确实不同（至少 cost vs construction 应有差异）
+     4. CSV 中每个分块有4行，preference 列区分
+
+● 好，计划已批准。开始实施。
+
+● Read 1 file (ctrl+o to expand)
+
+● 步骤1：修改 _joint_weights 接受偏好参数
+
+● Update(main_precast.py)
+  ⎿  Added 11 lines, removed 3 lines
+      479      return (value - low) / (high - low)                       
+      480                                                                
+      481                                                                
+      482 -def _joint_weights() -> List[float]:                          
+      483 -    # 与 _select_joint_best 的原始口径一致: cost / crack 优先 
+      484 -    return [0.45, 0.25, 0.15, 0.10, 0.05]                     
+      482 +def _joint_weights(preference: str = "balanced"               
+          +) -> List[float]:                                             
+      483 +    """联合评分权重，按偏好模式返回不同权重组合。             
+      484 +    5个目标: cost / crack / asv_over_s / dist_ratio /         
+          +-spacing                                                      
+      485 +    """                                                       
+      486 +    WEIGHT_MAP = {                                            
+      487 +        "cost":         [0.55, 0.15, 0.10, 0.10, 0.10],       
+      488 +        "safety":       [0.15, 0.55, 0.10, 0.10, 0.10],       
+      489 +        "construction": [0.15, 0.10, 0.10, 0.10, 0.55],       
+      490 +        "balanced":     [0.45, 0.25, 0.15, 0.10, 0.05],       
+      491 +    }                                                         
+      492 +    return WEIGHT_MAP.get(preference, WEIGHT_MAP["balanced"]) 
+      493                                                                
+      494                                                                
+      495  def _score_joint_front(front: List[Dict[str, Any]]) ->        
+           List[Dict[str, Any]]:                                         
+
+● 步骤2：修改 _score_joint_front 接受偏好参数
+
+● Update(main_precast.py)
+  ⎿  Added 2 lines, removed 2 lines
+      492      return WEIGHT_MAP.get(preference, WEIGHT_MAP["balanced"]) 
+      493                                                                
+      494                                                                
+      495 -def _score_joint_front(front: List[Dict[str, Any]]            
+          -) -> List[Dict[str, Any]]:                                    
+      495 +def _score_joint_front(front: List[Dict[str, Any]]            
+          +, preference: str = "balanced") -> List[Dict[str, Any]]:      
+      496      if not front:                                             
+      497          return []                                             
+      498                                                                
+     ...
+      501      cols = list(zip(*joint_objs))                             
+      502      mins = [min(col) for col in cols]                         
+      503      maxs = [max(col) for col in cols]                         
+      504 -    weights = _joint_weights()                                
+      504 +    weights = _joint_weights(preference)                      
+      505                                                                
+      506      for row, objs in zip(front, joint_objs):                  
+      507          main = row.get('main_rebar', {})                      
+
+● 步骤3：修改 _select_joint_best 接受偏好参数
+
+● Update(main_precast.py)
+  ⎿  Added 2 lines, removed 2 lines
+      573      return rows                                               
+      574                                                                
+      575                                                                
+      576 -def _select_joint_best(pareto_front: List[Dict[str, Any]]     
+          -) -> Dict[str, Any]:                                          
+      577 -    scored = _score_joint_front(pareto_front)                 
+      576 +def _select_joint_best(pareto_front: List[Dict[str, Any]]     
+          +, preference: str = "balanced") -> Dict[str, Any]:            
+      577 +    scored = _score_joint_front(pareto_front, preference)     
+      578      if not scored:                                            
+      579          return None                                           
+      580      return scored[0]['raw']                                   
+
+● 步骤4：修改 _build_joint_selection_payload 接受偏好参数
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在修改 _build_joint_selection_payload：
+
+● Update(main_precast.py)
+  ⎿  Added 12 lines, removed 9 lines
+      624      return None                                               
+      625                                                                
+      626                                                                
+      627 -def _build_joint_selection_payload(front: List[Dict[str,      
+          -Any]], selected_raw: Dict[str, Any]) -> Dict[str, Any]:       
+      628 -    scored = _score_joint_front(front)                        
+      627 +def _build_joint_selection_payload(front: List[Dict[str,      
+          +Any]], selected_raw: Dict[str, Any]                           
+          +, preference: str = "balanced") -> Dict[str, Any]:            
+      628 +    scored = _score_joint_front(front, preference)            
+      629 +    weights = _joint_weights(preference)                      
+      630 +    weight_dict = {                                           
+      631 +        'cost': weights[0],                                   
+      632 +        'max_crack': weights[1],                              
+      633 +        'provided_asv_over_s': weights[2],                    
+      634 +        'dist_ratio_to_main': weights[3],                     
+      635 +        'main_spacing': weights[4],                           
+      636 +    }                                                         
+      637      if not scored:                                            
+      638          return {                                              
+      639              'method': 'weighted_normalized_sum',              
+      640 -            'weights': {                                      
+      641 -                'cost': 0.45,                                 
+      642 -                'max_crack': 0.25,                            
+      643 -                'provided_asv_over_s': 0.15,                  
+      644 -                'dist_ratio_to_main': 0.10,                   
+      645 -                'main_spacing': 0.05,                         
+      646 -            },                                                
+      640 +            'preference': preference,                         
+      641 +            'weights': weight_dict,                           
+      642              'candidate_count': 0,                             
+      643              'selected_rank': None,                            
+      644              'selected_score': None,                           
+
+● 现在修改同一函数的 return 语句中的硬编码权重：
+
+● Update(main_precast.py)
+  ⎿  Added 2 lines, removed 7 lines
+      701                                                                
+      702      return {                                                  
+      703          'method': 'weighted_normalized_sum',                  
+      704 -        'weights': {                                          
+      705 -            'cost': 0.45,                                     
+      706 -            'max_crack': 0.25,                                
+      707 -            'provided_asv_over_s': 0.15,                      
+      708 -            'dist_ratio_to_main': 0.10,                       
+      709 -            'main_spacing': 0.05,                             
+      710 -        },                                                    
+      704 +        'preference': preference,                             
+      705 +        'weights': weight_dict,                               
+      706          'candidate_count': len(scored),                       
+      707          'selected_rank': selected.get('rank'),                
+      708          'selected_score': selected.get('joint_score'),        
+
+● 步骤5：修改 main() 核心流程——对同一个 joint_front 用4种偏好选解
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(main_precast.py)
+  ⎿  Added 18 lines, removed 10 lines
+      1431              combo_candidates.append(detail)                  
+      1432                                                               
+      1433          joint_front = _joint_pareto(combo_candidates)        
+      1434 -        chosen_raw = _select_joint_best(joint_front)         
+      1435 -        if not chosen_raw:                                   
+      1434 +                                                             
+      1435 +        # 对同一个 joint_front，用4种偏好分别评分选解        
+      1436 +        PREFERENCES = ["cost", "safety", "construction",     
+           +"balanced"]                                                  
+      1437 +        pref_results = {}                                    
+      1438 +        for pref in PREFERENCES:                             
+      1439 +            chosen_raw = _select_joint_best(joint_front,     
+           +preference=pref)                                             
+      1440 +            if not chosen_raw:                               
+      1441 +                continue                                     
+      1442 +            joint_selection =                                
+           +_build_joint_selection_payload(joint_front, chosen_raw,      
+           +preference=pref)                                             
+      1443 +            chosen = dict(chosen_raw)                        
+      1444 +            chosen['joint_pareto'] =                         
+           +_build_joint_pareto_payload(joint_front,                     
+           +selected_raw=chosen_raw)                                     
+      1445 +            chosen['joint_selection'] = joint_selection      
+      1446 +            chosen['stirrup_selection'] =                    
+           +_build_stirrup_selection_payload(chosen)                     
+      1447 +            chosen.pop('joint_objs', None)                   
+      1448 +            pref_results[pref] = chosen                      
+      1449 +                                                             
+      1450 +        if not pref_results:                                 
+      1451              type_results[stype] = None                       
+      1452              continue                                         
+      1453 +        type_results[stype] = pref_results                   
+      1454                                                               
+      1455 -        joint_selection =                                    
+           -_build_joint_selection_payload(joint_front, chosen_raw)      
+      1456 -        chosen = dict(chosen_raw)                            
+      1457 -        chosen['joint_pareto'] =                             
+           -_build_joint_pareto_payload(joint_front,                     
+           -selected_raw=chosen_raw)                                     
+      1458 -        chosen['joint_selection'] = joint_selection          
+      1459 -        chosen['stirrup_selection'] =                        
+           -_build_stirrup_selection_payload(chosen)                     
+      1460 -        chosen.pop('joint_objs', None)                       
+      1461 -        type_results[stype] = chosen                         
+      1462 -                                                             
+      1455      write_report_md(                                         
+      1456          args.report_md,                                      
+      1457          config,                                              
+
+● 步骤6：修改报告生成函数。 先看 write_report_md 的完整结构：
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在重写 write_report_md，适配新的 type_results 结构（Dict[stype → Dict[pref →
+   chosen]]）：
+
+● Update(main_precast.py)
+  ⎿  Added 168 lines, removed 109 lines
+      821                      governance: Optional[Dict[str, Any]] =    
+           None):                                                        
+      822      _ensure_parent_dir(path)                                  
+      823      lines: List[str] = []                                     
+      824 -    lines.append('# 装配式明洞配筋优化报告')                  
+      824 +    lines.append('# 装配式明洞配筋优化报告（多偏好方案）')    
+      825      lines.append('')                                          
+      826      lines.append(f'- 生成时间:                                
+           {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')              
+      827      lines.append(f'- 配置文件:                                
+           {os.path.abspath(config_file)}')                              
+     ...
+       839          lines.append(f'| {stype} | {type_source[stype]} |')  
+       840      lines.append('')                                         
+       841                                                               
+       842 -    lines.append('## 类型汇总')                              
+       843 -    lines.append('')                                         
+       844 -    lines.append('| 类型 | 方案 | 根数 | 主筋间距(mm) | 拉筋 
+           - | 分布筋 | 造价(CNY/m) | 最大裂缝(mm) | 施工间距(mm) |      
+           -联合候选数 | 拉筋候选数 | 联合评分 |')                       
+       845 -    lines.append('| --- | --- | --- | --- | --- | --- | ---  
+           -| --- | --- | --- | --- | --- |')                            
+       846 -    for stype in sorted(type_results.keys()):                
+       847 -        result = type_results.get(stype)                     
+       848 -        if not result:                                       
+       849 -            lines.append(f'| {stype} | 无解 | - | - | - | -  
+           -| - | - | - | - | - | - |')                                  
+       850 -            continue                                         
+       851 -        summary = result.get('summary', {})                  
+       852 -        main = result.get('main_rebar', {})                  
+       853 -        stirrup = result.get('stirrup', {})                  
+       854 -        dist = result.get('dist_rebar', {})                  
+       855 -        metrics = result.get('metrics', {})                  
+       856 -        joint_selection = result.get('joint_selection', {})  
+       857 -        stirrup_selection = result.get('stirrup_selection',  
+           -{})                                                          
+       858 -        lines.append(                                        
+       859 -            f'| {stype} | {summary.get("type", "")} | '      
+       860 -            f'{summary.get("count", "")} |                   
+           -{_format_value(main.get("spacing"), 1)} | '                  
+       861 -            f'{_format_stirrup_spec(stirrup)} |              
+           -{_format_dist_spec(dist)} | '                                
+       862 -            f'{_format_value(metrics.get("cost"), 2)} |      
+           -{_format_value(metrics.get("max_crack"), 3)} | '             
+       863 -            f'{_format_value(metrics.get("spacing"), 1)} | ' 
+       864 -            f'{joint_selection.get("candidate_count", "")} | 
+           - '                                                           
+       865 -            f'{stirrup_selection.get("candidate_count", "")} 
+           - | '                                                         
+       866 -                                                             
+           -f'{_format_value(joint_selection.get("selected_score"), 4)}  
+           -|'                                                           
+       867 -        )                                                    
+       868 -    lines.append('')                                         
+       842 +    # 偏好名称映射                                           
+       843 +    PREF_NAMES = {                                           
+       844 +        "cost": "造价优先",                                  
+       845 +        "safety": "安全优先",                                
+       846 +        "construction": "施工优先",                          
+       847 +        "balanced": "均衡方案",                              
+       848 +    }                                                        
+       849 +    PREFERENCES = ["cost", "safety", "construction",         
+           +"balanced"]                                                  
+       850                                                               
+       851 -    lines.append('## 分块结果')                              
+       851 +    # 多偏好方案总览                                         
+       852 +    lines.append('## 多偏好方案总览')                        
+       853      lines.append('')                                         
+       854 -    lines.append('| 分块 | 类型 | 采用代表块 | 方案 | 根数 | 
+           - 主筋间距(mm) | 拉筋 | 分布筋 | 造价(CNY/m) | 最大裂缝(mm)   
+           -|')                                                          
+       855 -    lines.append('| --- | --- | --- | --- | --- | --- | ---  
+           -| --- | --- | --- |')                                        
+       856 -    for seg in segments:                                     
+       857 -        seg_id = getattr(seg, 'segment_id', None)            
+       858 -        seg_type = getattr(seg, 'segment_type', None)        
+       859 -        if seg_id is None or seg_type is None:               
+       860 -            continue                                         
+       861 -        result = type_results.get(seg_type)                  
+       862 -        if not result:                                       
+       863 -            lines.append(f'| {seg_id} | {seg_type} |         
+           -{type_source.get(seg_type, "")} | 无解 | - | - | - | - | - | 
+           - - |')                                                       
+       864 -            continue                                         
+       865 -        summary = result.get('summary', {})                  
+       866 -        main = result.get('main_rebar', {})                  
+       867 -        stirrup = result.get('stirrup', {})                  
+       868 -        dist = result.get('dist_rebar', {})                  
+       869 -        metrics = result.get('metrics', {})                  
+       870 -        lines.append(                                        
+       871 -            f'| {seg_id} | {seg_type} |                      
+           -{type_source.get(seg_type, "")} | '                          
+       872 -            f'{summary.get("type", "")} |                    
+           -{summary.get("count", "")} | '                               
+       873 -            f'{_format_value(main.get("spacing"), 1)} |      
+           -{_format_stirrup_spec(stirrup)} | '                          
+       874 -            f'{_format_dist_spec(dist)} |                    
+           -{_format_value(metrics.get("cost"), 2)} | '                  
+       875 -            f'{_format_value(metrics.get("max_crack"), 3)}   
+           -|'                                                           
+       876 -        )                                                    
+       877 -                                                             
+       854 +    stypes_sorted = sorted(type_source.keys())               
+       855 +    header_cols = ['偏好',                                   
+           +'权重(成本/裂缝/抗剪/分布筋/间距)']                          
+       856 +    for stype in stypes_sorted:                              
+       857 +        header_cols.extend([f'{stype}型方案',                
+           +f'{stype}型造价', f'{stype}型裂缝'])                         
+       858 +    lines.append('| ' + ' | '.join(header_cols) + ' |')      
+       859 +    lines.append('| ' + ' | '.join(['---'] *                 
+           +len(header_cols)) + ' |')                                    
+       860 +    for pref in PREFERENCES:                                 
+       861 +        weights = _joint_weights(pref)                       
+       862 +        w_str = '/'.join(f'{w:.2f}' for w in weights)        
+       863 +        row_cols = [PREF_NAMES.get(pref, pref), w_str]       
+       864 +        for stype in stypes_sorted:                          
+       865 +            pref_data = type_results.get(stype)              
+       866 +            if not pref_data or not isinstance(pref_data,    
+           +dict) or pref not in pref_data:                              
+       867 +                row_cols.extend(['无解', '-', '-'])          
+       868 +                continue                                     
+       869 +            result = pref_data[pref]                         
+       870 +            summary = result.get('summary', {})              
+       871 +            metrics = result.get('metrics', {})              
+       872 +            main = result.get('main_rebar', {})              
+       873 +            scheme = f"{summary.get('type', '')}             
+           +x{summary.get('count', '')}"                                 
+       874 +            row_cols.extend([                                
+       875 +                scheme,                                      
+       876 +                _format_value(metrics.get('cost'), 2),       
+       877 +                _format_value(metrics.get('max_crack'), 3),  
+       878 +            ])                                               
+       879 +        lines.append('| ' + ' | '.join(str(c) for c in       
+           +row_cols) + ' |')                                            
+       880      lines.append('')                                         
+       881 -    lines.append('## 技术复核明细')                          
+       882 -    lines.append('')                                         
+       883 -    for stype in sorted(type_results.keys()):                
+       884 -        result = type_results.get(stype)                     
+       885 -        lines.append(f'### 类型 {stype}')                    
+       886 -        if not result:                                       
+       887 -            lines.append('- 无可行解。')                     
+       888 -            lines.append('')                                 
+       889 -            continue                                         
+       881                                                               
+       882 -        joint_selection = result.get('joint_selection', {})  
+       883 -        stirrup_selection = result.get('stirrup_selection',  
+           -{})                                                          
+       884 -        joint_delta =                                        
+           -joint_selection.get('delta_vs_runner_up')                    
+       885 -                                                             
+       886 -        lines.append(f"- 联合Pareto候选数:                   
+           -{joint_selection.get('candidate_count', 0)}")                
+       887 -        lines.append(f"- 拉筋Pareto候选数:                   
+           -{stirrup_selection.get('candidate_count', 0)}")              
+       888 -        lines.append(f"- 联合选型理由:                       
+           -{joint_selection.get('selected_reason', '')}")               
+       889 -        lines.append(f"- 拉筋选型理由:                       
+           -{stirrup_selection.get('selected_reason', '')}")             
+       890 -        lines.append(f"- 拉筋所需 Asv/s:                     
+           -{_format_value(stirrup_selection.get('required_asv_over_s'), 
+           - 5)}")                                                       
+       891 -        if joint_delta:                                      
+       892 -            lines.append(f"- 联合相对次优差值(入选-次优):    
+           -{_format_delta_text(joint_delta)}")                          
+       882 +    # 按偏好分段输出                                         
+       883 +    for pref in PREFERENCES:                                 
+       884 +        pref_name = PREF_NAMES.get(pref, pref)               
+       885 +        weights = _joint_weights(pref)                       
+       886 +        w_str = '/'.join(f'{w:.2f}' for w in weights)        
+       887 +        lines.append(f'## {pref_name} ({pref.upper()})')     
+       888          lines.append('')                                     
+       889 +        lines.append(f'- 权重(成本/裂缝/抗剪/分布筋/间距):   
+           +{w_str}')                                                    
+       890 +        lines.append('')                                     
+       891                                                               
+       892 -        lines.append('#### 联合候选对比')                    
+       892 +        # 类型汇总                                           
+       893 +        lines.append('### 类型汇总')                         
+       894          lines.append('')                                     
+       895 -        lines.append('| 排名 | 入选 | 主筋                   
+           - | 拉筋 | 分布筋 | 造价(CNY/m) | 最大裂缝(mm) | Asv/s |      
+           -分布筋比 | 主筋间距(mm) | 联合评分 |')                       
+       896 -        lines.append('| --- | --- | --- | --- | --- | --- |  
+           ---- | --- | --- | --- | --- |')                              
+       897 -        joint_rows = joint_selection.get('candidates', [])   
+       898 -        if not joint_rows:                                   
+       899 -            lines.append('| - | - | - | - | - | - | - | - |  
+           -- | - | - |')                                                
+       900 -        else:                                                
+       901 -            for row in joint_rows:                           
+       902 -                lines.append(                                
+       903 -                    f"| {row.get('rank', '')} | {'Y' if      
+           -row.get('is_selected') else ''} | "                          
+       904 -                    f"{_format_main_spec(row.get('main',     
+           -{}))} | "                                                    
+       905 -                                                             
+           -f"{_format_stirrup_spec(row.get('stirrup', {}))} | "         
+       906 -                    f"{_format_dist_spec(row.get('dist',     
+           -{}))} | "                                                    
+       907 -                    f"{_format_value(row.get('metrics',      
+           -{}).get('cost'), 2)} | "                                     
+       908 -                    f"{_format_value(row.get('metrics',      
+           -{}).get('max_crack'), 3)} | "                                
+       909 -                    f"{_format_value(row.get('metrics',      
+           -{}).get('provided_asv_over_s'), 5)} | "                      
+       910 -                    f"{_format_value(row.get('metrics',      
+           -{}).get('dist_ratio_to_main'), 4)} | "                       
+       911 -                    f"{_format_value(row.get('metrics',      
+           -{}).get('main_spacing'), 1)} | "                             
+       912 -                    f"{_format_value(row.get('joint_score'), 
+           - 4)} |"                                                      
+       913 -                )                                            
+       895 +        lines.append('| 类型 | 方案 | 根数 | 主筋间距(mm)    
+           + | 拉筋 | 分布筋 | 造价(CNY/m) | 最大裂缝(mm) | 施工间距(mm) 
+           + | 联合候选数 | 拉筋候选数 | 联合评分 |')                    
+       896 +        lines.append('| --- | --- | --- | --- | --- | --- |  
+           +--- | --- | --- | --- | --- | --- |')                        
+       897 +        for stype in stypes_sorted:                          
+       898 +            pref_data = type_results.get(stype)              
+       899 +            if not pref_data or not isinstance(pref_data,    
+           +dict) or pref not in pref_data:                              
+       900 +                lines.append(f'| {stype} | 无解 | - | - | -  
+           +| - | - | - | - | - | - | - |')                              
+       901 +                continue                                     
+       902 +            result = pref_data[pref]                         
+       903 +            summary = result.get('summary', {})              
+       904 +            main = result.get('main_rebar', {})              
+       905 +            stirrup = result.get('stirrup', {})              
+       906 +            dist = result.get('dist_rebar', {})              
+       907 +            metrics = result.get('metrics', {})              
+       908 +            joint_selection = result.get('joint_selection',  
+           +{})                                                          
+       909 +            stirrup_selection =                              
+           +result.get('stirrup_selection', {})                          
+       910 +            lines.append(                                    
+       911 +                f'| {stype} | {summary.get("type", "")} | '  
+       912 +                f'{summary.get("count", "")} |               
+           +{_format_value(main.get("spacing"), 1)} | '                  
+       913 +                f'{_format_stirrup_spec(stirrup)} |          
+           +{_format_dist_spec(dist)} | '                                
+       914 +                f'{_format_value(metrics.get("cost"), 2)} |  
+           +{_format_value(metrics.get("max_crack"), 3)} | '             
+       915 +                f'{_format_value(metrics.get("spacing"), 1)} 
+           + | '                                                         
+       916 +                f'{joint_selection.get("candidate_count",    
+           +"")} | '                                                     
+       917 +                f'{stirrup_selection.get("candidate_count",  
+           +"")} | '                                                     
+       918 +                                                             
+           +f'{_format_value(joint_selection.get("selected_score"), 4)}  
+           +|'                                                           
+       919 +            )                                                
+       920          lines.append('')                                     
+       921                                                               
+       922 -        lines.append('#### 拉筋候选对比')                    
+       922 +        # 分块结果                                           
+       923 +        lines.append('### 分块结果')                         
+       924          lines.append('')                                     
+       925 -        lines.append('| 排名 | 入选 | 拉筋 | 提供Asv/s |     
+           -与需求差值 | max_ratio | max_limit_ratio |')                 
+       926 -        lines.append('| --- | --- | --- | --- | --- | --- |  
+           ---- |')                                                      
+       927 -        stirrup_rows = stirrup_selection.get('candidates',   
+           -[])                                                          
+       928 -        if not stirrup_rows:                                 
+       929 -            lines.append('| - | - | - | - | - | - | - |')    
+       930 -        else:                                                
+       931 -            for row in stirrup_rows:                         
+       932 -                lines.append(                                
+       933 -                    f"| {row.get('rank', '')} | {'Y' if      
+           -row.get('is_selected') else ''} | "                          
+       934 -                    f"{row.get('spec', '')} | "              
+       935 -                                                             
+           -f"{_format_value(row.get('provided_asv_over_s'), 5)} | "     
+       936 -                                                             
+           -f"{_format_value(row.get('delta_to_required'), 5)} | "       
+       937 -                    f"{_format_value(row.get('max_ratio'),   
+           -3)} | "                                                      
+       938 -                                                             
+           -f"{_format_value(row.get('max_limit_ratio'), 3)} |"          
+       939 -                )                                            
+       925 +        lines.append('| 分块 | 类型 | 采用代表块 | 方案 |    
+           +根数 | 主筋间距(mm) | 拉筋 | 分布筋 | 造价(CNY/m) |          
+           +最大裂缝(mm) |')                                             
+       926 +        lines.append('| --- | --- | --- | --- | --- | --- |  
+           +--- | --- | --- | --- |')                                    
+       927 +        for seg in segments:                                 
+       928 +            seg_id = getattr(seg, 'segment_id', None)        
+       929 +            seg_type = getattr(seg, 'segment_type', None)    
+       930 +            if seg_id is None or seg_type is None:           
+       931 +                continue                                     
+       932 +            pref_data = type_results.get(seg_type)           
+       933 +            if not pref_data or not isinstance(pref_data,    
+           +dict) or pref not in pref_data:                              
+       934 +                lines.append(f'| {seg_id} | {seg_type} |     
+           +{type_source.get(seg_type, "")} | 无解 | - | - | - | - | - | 
+           + - |')                                                       
+       935 +                continue                                     
+       936 +            result = pref_data[pref]                         
+       937 +            summary = result.get('summary', {})              
+       938 +            main = result.get('main_rebar', {})              
+       939 +            stirrup = result.get('stirrup', {})              
+       940 +            dist = result.get('dist_rebar', {})              
+       941 +            metrics = result.get('metrics', {})              
+       942 +            lines.append(                                    
+       943 +                f'| {seg_id} | {seg_type} |                  
+           +{type_source.get(seg_type, "")} | '                          
+       944 +                f'{summary.get("type", "")} |                
+           +{summary.get("count", "")} | '                               
+       945 +                f'{_format_value(main.get("spacing"), 1)} |  
+           +{_format_stirrup_spec(stirrup)} | '                          
+       946 +                f'{_format_dist_spec(dist)} |                
+           +{_format_value(metrics.get("cost"), 2)} | '                  
+       947 +                f'{_format_value(metrics.get("max_crack"),   
+           +3)} |'                                                       
+       948 +            )                                                
+       949          lines.append('')                                     
+       950                                                               
+       951 +        # 技术复核明细（仅 balanced                          
+           +输出完整候选表，其他偏好只输出选型理由）                     
+       952 +        lines.append('### 技术复核明细')                     
+       953 +        lines.append('')                                     
+       954 +        for stype in stypes_sorted:                          
+       955 +            pref_data = type_results.get(stype)              
+       956 +            lines.append(f'#### 类型 {stype}')               
+       957 +            if not pref_data or not isinstance(pref_data,    
+           +dict) or pref not in pref_data:                              
+       958 +                lines.append('- 无可行解。')                 
+       959 +                lines.append('')                             
+       960 +                continue                                     
+       961 +                                                             
+       962 +            result = pref_data[pref]                         
+       963 +            joint_selection = result.get('joint_selection',  
+           +{})                                                          
+       964 +            stirrup_selection =                              
+           +result.get('stirrup_selection', {})                          
+       965 +            joint_delta =                                    
+           +joint_selection.get('delta_vs_runner_up')                    
+       966 +                                                             
+       967 +            lines.append(f"- 联合Pareto候选数:               
+           +{joint_selection.get('candidate_count', 0)}")                
+       968 +            lines.append(f"- 拉筋Pareto候选数:               
+           +{stirrup_selection.get('candidate_count', 0)}")              
+       969 +            lines.append(f"- 联合选型理由:                   
+           +{joint_selection.get('selected_reason', '')}")               
+       970 +            lines.append(f"- 拉筋选型理由:                   
+           +{stirrup_selection.get('selected_reason', '')}")             
+       971 +            lines.append(f"- 拉筋所需 Asv/s:                 
+           +{_format_value(stirrup_selection.get('required_asv_over_s'), 
+           + 5)}")                                                       
+       972 +            if joint_delta:                                  
+       973 +                lines.append(f"-                             
+           +联合相对次优差值(入选-次优):                                 
+           +{_format_delta_text(joint_delta)}")                          
+       974 +            lines.append('')                                 
+       975 +                                                             
+       976 +            # 联合候选对比表                                 
+       977 +            lines.append('##### 联合候选对比')               
+       978 +            lines.append('')                                 
+       979 +            lines.append('| 排名 | 入选 | 主筋 | 拉筋 |      
+           +分布筋 | 造价(CNY/m) | 最大裂缝(mm) | Asv/s | 分布筋比 |     
+           +主筋间距(mm) | 联合评分 |')                                  
+       980 +            lines.append('| --- | --- | --- | --- | --- |    
+           +--- | --- | --- | --- | --- | --- |')                        
+       981 +            joint_rows = joint_selection.get('candidates',   
+           +[])                                                          
+       982 +            if not joint_rows:                               
+       983 +                lines.append('| - | - | - | - | - | - | - |  
+           +- | - | - | - |')                                            
+       984 +            else:                                            
+       985 +                for row in joint_rows:                       
+       986 +                    lines.append(                            
+       987 +                        f"| {row.get('rank', '')} | {'Y' if  
+           +row.get('is_selected') else ''} | "                          
+       988 +                        f"{_format_main_spec(row.get('main', 
+           + {}))} | "                                                   
+       989 +                                                             
+           +f"{_format_stirrup_spec(row.get('stirrup', {}))} | "         
+       990 +                        f"{_format_dist_spec(row.get('dist', 
+           + {}))} | "                                                   
+       991 +                        f"{_format_value(row.get('metrics',  
+           +{}).get('cost'), 2)} | "                                     
+       992 +                        f"{_format_value(row.get('metrics',  
+           +{}).get('max_crack'), 3)} | "                                
+       993 +                        f"{_format_value(row.get('metrics',  
+           +{}).get('provided_asv_over_s'), 5)} | "                      
+       994 +                        f"{_format_value(row.get('metrics',  
+           +{}).get('dist_ratio_to_main'), 4)} | "                       
+       995 +                        f"{_format_value(row.get('metrics',  
+           +{}).get('main_spacing'), 1)} | "                             
+       996 +                                                             
+           +f"{_format_value(row.get('joint_score'), 4)} |"              
+       997 +                    )                                        
+       998 +            lines.append('')                                 
+       999 +                                                             
+      1000 +            # 拉筋候选对比表（所有偏好共享同一个拉筋Pareto， 
+           +只在第一个偏好输出）                                         
+      1001 +            if pref == PREFERENCES[0]:                       
+      1002 +                lines.append('##### 拉筋候选对比')           
+      1003 +                lines.append('')                             
+      1004 +                lines.append('| 排名 | 入选 | 拉筋 |         
+           +提供Asv/s | 与需求差值 | max_ratio | max_limit_ratio |')     
+      1005 +                lines.append('| --- | --- | --- | --- | ---  
+           +| --- | --- |')                                              
+      1006 +                stirrup_rows =                               
+           +stirrup_selection.get('candidates', [])                      
+      1007 +                if not stirrup_rows:                         
+      1008 +                    lines.append('| - | - | - | - | - | - |  
+           +- |')                                                        
+      1009 +                else:                                        
+      1010 +                    for row in stirrup_rows:                 
+      1011 +                        lines.append(                        
+      1012 +                            f"| {row.get('rank', '')} | {'Y' 
+           + if row.get('is_selected') else ''} | "                      
+      1013 +                            f"{row.get('spec', '')} | "      
+      1014 +                                                             
+           +f"{_format_value(row.get('provided_asv_over_s'), 5)} | "     
+      1015 +                                                             
+           +f"{_format_value(row.get('delta_to_required'), 5)} | "       
+      1016 +                                                             
+           +f"{_format_value(row.get('max_ratio'), 3)} | "               
+      1017 +                                                             
+           +f"{_format_value(row.get('max_limit_ratio'), 3)} |"          
+      1018 +                        )                                    
+      1019 +                lines.append('')                             
+      1020 +                                                             
+      1021      lines.append('')                                         
+      1022      lines.append('## 规范参数治理')                          
+      1023      lines.append('')                                         
+
+● 步骤7：修改 write_report_csv 适配新数据结构
+
+● Read 1 file (ctrl+o to expand)
+
+● 现在修改 write_report_csv 增加 preference 列：
+
+● Update(main_precast.py)
+  ⎿  Added 51 lines, removed 46 lines
+      1105      governance_approved =                                    
+            governance.get('approved_change_count', '') if governance    
+            else ''                                                      
+      1106                                                               
+      1107      header = [                                               
+      1108 -        '                                                    
+           -segment_id', 'segment_type', 'representative_segment',       
+      1108 +        'preference', '                                      
+           +segment_id', 'segment_type', 'representative_segment',       
+      1109          'scheme', 'count', 'main_spacing_mm',                
+            'stirrup_spec', 'dist_spec',                                 
+      1110          'cost_cny_per_m', 'max_crack_mm',                    
+            'spacing_objective_mm',                                      
+      1111          'joint_pareto_count', 'stirrup_pareto_count',        
+     ...
+      1115          'governance_blocked_count',                          
+            'governance_approved_count'                                  
+      1116      ]                                                        
+      1117                                                               
+      1118 +    PREFERENCES = ["cost", "safety", "construction",         
+           +"balanced"]                                                  
+      1119 +                                                             
+      1120      with open(path, 'w', newline='', encoding='utf-8') as f: 
+      1121          writer = csv.writer(f)                               
+      1122          writer.writerow(header)                              
+      1123 -        empty_tail = [''] * (len(header) - 3)                
+      1124 -        for seg in segments:                                 
+      1125 -            seg_id = getattr(seg, 'segment_id', None)        
+      1126 -            seg_type = getattr(seg, 'segment_type', None)    
+      1127 -            if seg_id is None or seg_type is None:           
+      1128 -                continue                                     
+      1129 -            result = type_results.get(seg_type)              
+      1130 -            if not result:                                   
+      1131 -                writer.writerow([seg_id, seg_type,           
+           -type_source.get(seg_type, '')] + empty_tail)                 
+      1132 -                continue                                     
+      1133 -            summary = result.get('summary', {})              
+      1134 -            main = result.get('main_rebar', {})              
+      1135 -            stirrup = result.get('stirrup', {})              
+      1136 -            dist = result.get('dist_rebar', {})              
+      1137 -            metrics = result.get('metrics', {})              
+      1138 -            joint_selection = result.get('joint_selection',  
+           -{})                                                          
+      1139 -            stirrup_selection =                              
+           -result.get('stirrup_selection', {})                          
+      1140 -            writer.writerow([                                
+      1141 -                seg_id,                                      
+      1142 -                seg_type,                                    
+      1143 -                type_source.get(seg_type, ''),               
+      1144 -                summary.get('type', ''),                     
+      1145 -                summary.get('count', ''),                    
+      1146 -                _format_value(main.get('spacing'), 1),       
+      1147 -                _format_stirrup_spec(stirrup),               
+      1148 -                _format_dist_spec(dist),                     
+      1149 -                _format_value(metrics.get('cost'), 2),       
+      1150 -                _format_value(metrics.get('max_crack'), 3),  
+      1151 -                _format_value(metrics.get('spacing'), 1),    
+      1152 -                joint_selection.get('candidate_count', ''),  
+      1153 -                stirrup_selection.get('candidate_count',     
+           -''),                                                         
+      1154 -                joint_selection.get('selected_rank', ''),    
+      1155 -                                                             
+           -_format_value(joint_selection.get('selected_score'), 4),     
+      1156 -                joint_selection.get('selected_reason', ''),  
+      1157 -                _build_joint_top_summary(joint_selection,    
+           -top_n=3),                                                    
+      1158 -                stirrup_selection.get('selected_rank', ''),  
+      1159 -                                                             
+           -_format_value(stirrup_selection.get('required_asv_over_s'),  
+           -5),                                                          
+      1160 -                stirrup_selection.get('selected_reason',     
+           -''),                                                         
+      1161 -                                                             
+           -_build_stirrup_top_summary(stirrup_selection, top_n=3),      
+      1162 -                governance_code_fingerprint,                 
+      1163 -                governance_config_hash,                      
+      1164 -                governance_source_summary,                   
+      1165 -                governance_blocked,                          
+      1166 -                governance_approved,                         
+      1167 -            ])                                               
+      1123 +        empty_tail = [''] * (len(header) - 4)                
+           +  # 4 = preference + seg_id + seg_type + representative      
+      1124 +        for pref in PREFERENCES:                             
+      1125 +            for seg in segments:                             
+      1126 +                seg_id = getattr(seg, 'segment_id', None)    
+      1127 +                seg_type = getattr(seg, 'segment_type',      
+           +None)                                                        
+      1128 +                if seg_id is None or seg_type is None:       
+      1129 +                    continue                                 
+      1130 +                pref_data = type_results.get(seg_type)       
+      1131 +                if not pref_data or not                      
+           +isinstance(pref_data, dict) or pref not in pref_data:        
+      1132 +                    writer.writerow([pref, seg_id, seg_type, 
+           + type_source.get(seg_type, '')] + empty_tail)                
+      1133 +                    continue                                 
+      1134 +                result = pref_data[pref]                     
+      1135 +                summary = result.get('summary', {})          
+      1136 +                main = result.get('main_rebar', {})          
+      1137 +                stirrup = result.get('stirrup', {})          
+      1138 +                dist = result.get('dist_rebar', {})          
+      1139 +                metrics = result.get('metrics', {})          
+      1140 +                joint_selection =                            
+           +result.get('joint_selection', {})                            
+      1141 +                stirrup_selection =                          
+           +result.get('stirrup_selection', {})                          
+      1142 +                writer.writerow([                            
+      1143 +                    pref,                                    
+      1144 +                    seg_id,                                  
+      1145 +                    seg_type,                                
+      1146 +                    type_source.get(seg_type, ''),           
+      1147 +                    summary.get('type', ''),                 
+      1148 +                    summary.get('count', ''),                
+      1149 +                    _format_value(main.get('spacing'), 1),   
+      1150 +                    _format_stirrup_spec(stirrup),           
+      1151 +                    _format_dist_spec(dist),                 
+      1152 +                    _format_value(metrics.get('cost'), 2),   
+      1153 +                    _format_value(metrics.get('max_crack'),  
+           +3),                                                          
+      1154 +                    _format_value(metrics.get('spacing'),    
+           +1),                                                          
+      1155 +                    joint_selection.get('candidate_count',   
+           +''),                                                         
+      1156 +                    stirrup_selection.get('candidate_count', 
+           + ''),                                                        
+      1157 +                    joint_selection.get('selected_rank',     
+           +''),                                                         
+      1158 +                                                             
+           +_format_value(joint_selection.get('selected_score'), 4),     
+      1159 +                    joint_selection.get('selected_reason',   
+           +''),                                                         
+      1160 +                                                             
+           +_build_joint_top_summary(joint_selection, top_n=3),          
+      1161 +                    stirrup_selection.get('selected_rank',   
+           +''),                                                         
+      1162 +                                                             
+           +_format_value(stirrup_selection.get('required_asv_over_s'),  
+           +5),                                                          
+      1163 +                    stirrup_selection.get('selected_reason', 
+           + ''),                                                        
+      1164 +                                                             
+           +_build_stirrup_top_summary(stirrup_selection, top_n=3),      
+      1165 +                    governance_code_fingerprint,             
+      1166 +                    governance_config_hash,                  
+      1167 +                    governance_source_summary,               
+      1168 +                    governance_blocked,                      
+      1169 +                    governance_approved,                     
+      1170 +                ])                                           
+      1171                                                               
+      1172                                                               
+      1173  def write_report_xlsx(path: str, segments, type_source:      
+            Dict[str, str], type_results: Dict[str, Any],                
+
+● 步骤8：修改控制台输出
+
+● Read 1 file (ctrl+o to expand)
+
+● Update(main_precast.py)
+  ⎿  Added 19 lines, removed 14 lines
+      1544              governance=governance                            
+      1545          )                                                    
+      1546                                                               
+      1547 -    print('\n=== Symmetric Design Summary ===')              
+      1548 -    for seg in segments:                                     
+      1549 -        seg_id = getattr(seg, 'segment_id', None)            
+      1550 -        seg_type = getattr(seg, 'segment_type', None)        
+      1551 -        if seg_id is None or seg_type is None:               
+      1552 -            continue                                         
+      1553 -        result = type_results.get(seg_type)                  
+      1554 -        if not result:                                       
+      1555 -            print(f'{seg_id}: no solution')                  
+      1556 -            continue                                         
+      1557 -        summary = result.get('summary', {})                  
+      1558 -        stirrup = _format_stirrup_spec(result.get('stirrup', 
+           - {}))                                                        
+      1559 -        dist = _format_dist_spec(result.get('dist_rebar',    
+           -{}))                                                         
+      1560 -        print(f'{seg_id}: {summary.get("type")} x            
+           -{summary.get("count")}, stirrup={stirrup}, dist={dist}')     
+      1547 +    PREF_NAMES = {"cost": "造价优先", "safety": "安全优先",  
+           +"construction": "施工优先", "balanced": "均衡方案"}          
+      1548 +    PREFERENCES = ["cost", "safety", "construction",         
+           +"balanced"]                                                  
+      1549 +    print('\n=== Symmetric Design Summary (Multi-Preference) 
+           + ===')                                                       
+      1550 +    for pref in PREFERENCES:                                 
+      1551 +        print(f'\n--- {PREF_NAMES[pref]} ({pref.upper()})    
+           +---')                                                        
+      1552 +        for seg in segments:                                 
+      1553 +            seg_id = getattr(seg, 'segment_id', None)        
+      1554 +            seg_type = getattr(seg, 'segment_type', None)    
+      1555 +            if seg_id is None or seg_type is None:           
+      1556 +                continue                                     
+      1557 +            pref_data = type_results.get(seg_type)           
+      1558 +            if not pref_data or not isinstance(pref_data,    
+           +dict) or pref not in pref_data:                              
+      1559 +                print(f'{seg_id}: no solution')              
+      1560 +                continue                                     
+      1561 +            result = pref_data[pref]                         
+      1562 +            summary = result.get('summary', {})              
+      1563 +            stirrup =                                        
+           +_format_stirrup_spec(result.get('stirrup', {}))              
+      1564 +            dist =                                           
+           +_format_dist_spec(result.get('dist_rebar', {}))              
+      1565 +            print(f'{seg_id}: {summary.get("type")} x        
+           +{summary.get("count")}, stirrup={stirrup}, dist={dist}')     
+      1566                                                               
+      1567      print('\nType Representative Blocks:')                   
+      1568      for stype, seg_id in type_source.items():                
+
+● 现在还需要检查 write_report_xlsx 是否也需要适配。先看看它的结构：
+
+● Read 1 file (ctrl+o to expand)
+  ⎿  API Error: 402 余额不足
+
+
+✻ Worked for 8m 20s

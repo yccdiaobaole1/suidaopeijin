@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(python3:*)",
+      "Bash(\"D:\\\\suidaopeijin\\\\代码验证报告.md\":*)",
+      "Bash(\"D:\\\\suidaopeijin\\\\配筋优化系统评估报告.md\":*)",
+      "Bash(\"D:\\\\suidaopeijin\\\\目标函数和帕累托筛选详解.md\":*)",
+      "Bash(\"D:\\\\suidaopeijin\\\\种群规模分析报告.md\":*)",
+      "Bash(\"D:\\\\suidaopeijin\\\\明洞衬砌配筋流程总结.md\":*)",
+      "Bash(sed:*)",
+      "Bash(ls:*)",
+      "Bash(rm:*)"
+    ]
+  }
+}
